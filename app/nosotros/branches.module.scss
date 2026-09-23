@@ -1,0 +1,11 @@
+.intro { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 90px; padding-block: 78px; }
+.introText { color: var(--muted); font-size: 13px; line-height: 1.9; margin: 0; }
+@media (max-width: 800px) { .intro { grid-template-columns: 1fr; gap: 28px; padding-block: 48px; } }
+.section { padding-bottom: 100px; }
+.heading { max-width: 620px; margin-bottom: 36px; > p:last-child { font-size: 14px; line-height: 1.8; color: var(--muted); margin: 20px 0 0; } }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.card { margin: 0; min-width: 0; }
+.photo { border-radius: 16px; overflow: hidden; background: var(--paper); img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; transition: transform .8s cubic-bezier(.22, 1, .36, 1); } }
+.card figcaption { padding-top: 22px; display: flex; justify-content: space-between; align-items: center; gap: 16px; span { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .12em; } h3 { display: flex; align-items: center; gap: 8px; font-size: 24px; font-weight: 500; letter-spacing: -.04em; margin: 7px 0 0; } }
+@media (hover: hover) { .card:hover img { transform: scale(1.025); } }
+@media (max-width: 700px) { .section { padding-bottom: 64px; } .grid { grid-template-columns: 1fr; gap: 36px; } .heading { margin-bottom: 28px; } }

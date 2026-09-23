@@ -1,0 +1,18 @@
+.form {
+  position: relative; overflow: hidden; isolation: isolate; padding: 38px; border: 1px solid #31517b; border-radius: 26px; background: radial-gradient(ellipse at 100% 0%, #284d7e, transparent 60%), #0b2243; color: white; box-shadow: 0 24px 60px #0b224318;
+  &::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background-image: linear-gradient(#ffffff04 1px, transparent 1px), linear-gradient(90deg, #ffffff04 1px, transparent 1px); background-size: 36px 36px; mask-image: linear-gradient(#000, transparent 60%); }
+  h3 { font-size: clamp(28px, 3vw, 38px); font-weight: 500; line-height: 1.12; letter-spacing: -.045em; margin: 24px 0 14px; }
+  > p { font-size: 13px; line-height: 1.7; color: #bacce1; margin: 0 0 28px; }
+  label { display: block; font-size: 11px; font-weight: 500; margin: 21px 0 9px; color: #e6edf7; }
+  input, select, textarea { width: 100%; background: #ffffff09; border: 1px solid #7187a34f; color: white; border-radius: 12px; padding: 14px 15px; font-size: 13px; transition: background .35s, border-color .35s, box-shadow .35s; }
+  input::placeholder, textarea::placeholder { color: #a9bbd1; }
+  select { color-scheme: dark; option { background: #112b4e; color: white; } }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: #f7e727a6; background: #ffffff10; box-shadow: 0 0 0 3px #f7e72712; }
+  textarea { resize: vertical; min-height: 115px; }
+  > button { width: 100%; justify-content: space-between; margin-top: 24px; border-radius: 30px; min-height: 52px; }
+  small { display: block; font-size: 10px; color: #bacce1; line-height: 1.7; margin-top: 15px; }
+}
+.heading { display: flex; align-items: center; gap: 12px; color: var(--yellow); font-size: 9px; font-weight: 600; letter-spacing: .14em; > svg { padding: 10px; width: 44px; height: 44px; background: #ffffff0d; border-radius: 14px; } }
+.ready { margin-top: 20px; padding: 16px; border: 1px solid #f7e72750; border-radius: 14px; background: #ffffff08; p { font-size: 13px; color: #e3ebf7; line-height: 1.7; margin: 0 0 12px; } a { width: 100%; justify-content: space-between; border-radius: 24px; background: var(--yellow); color: var(--navy); &:hover { background: #fff36a; } } }
+@media (max-width: 540px) { .form { padding: 26px; border-radius: 22px; } }
+@media (forced-colors: active) { .form :is(input, select, textarea):focus { outline: 2px solid Highlight; } }

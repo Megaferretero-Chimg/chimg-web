@@ -1,69 +1,28 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import HomeHero from "@/components/home-hero";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import ProjectBanner from "@/components/project-banner";
+import LineIcon from "@/components/line-icon";
+import { lines } from "@/lib/site";
+import styles from "@/styles/corporate.module.scss";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.js</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main id="contenido">
+      <HomeHero />
+      <nav className={styles.lineNav} aria-label="Explora nuestras cinco líneas">
+        <div className="container" data-reveal-group>{lines.map(line => <Link key={line.slug} href={`/lineas/${line.slug}`}><LineIcon name={line.icon} size={23} /><span>{line.name}</span><ArrowUpRight className={styles.lineNavArrow} size={14} /></Link>)}</div>
+      </nav>
+      <section className={`container ${styles.explore}`} aria-labelledby="explore-title">
+        <p className="eyebrow" data-reveal>CONOCE CHIMG</p>
+        <h2 className="section-title" id="explore-title" data-reveal>Un aliado en cada paso.</h2>
+        <div className={styles.exploreGrid} data-reveal-group>
+          <Link href="/nosotros"><span>01 · NOSOTROS</span><h3>Una historia que construimos juntos.</h3><p>Conoce quiénes somos y qué nos mueve desde hace más de 25 años.</p><span className="text-link">Conoce CHIMG <ArrowUpRight size={18} /></span></Link>
+          <Link href="/lineas"><span>02 · NUESTRAS LÍNEAS</span><h3>Encuentra nuevas posibilidades.</h3><p>Cinco líneas para construir, renovar y dar vida a tus espacios.</p><span className="text-link">Explora nuestras líneas <ArrowUpRight size={18} /></span></Link>
+          <Link href="/servicios"><span>03 · SERVICIOS</span><h3>Te acompañamos más allá de la compra.</h3><p>Descubre nuestra asesoría, entrega y soporte para tu proyecto.</p><span className="text-link">Descubre nuestros servicios <ArrowUpRight size={18} /></span></Link>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+      <ProjectBanner />
+    </main>
   );
 }

@@ -1,0 +1,61 @@
+.header { position: relative; z-index: 20; background: white; }
+.topbar {
+  background: var(--blue); color: #fff; font-size: 11px; letter-spacing: .025em;
+  > div { display: flex; justify-content: space-between; align-items: center; min-height: 34px; gap: 20px; }
+  > div > div { display: flex; align-items: center; gap: 26px; }
+  a { display: inline-flex; align-items: center; gap: 7px; }
+}
+.navigation { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 100px; }
+.logo { flex-shrink: 0; img { width: 199px; height: auto; } }
+.links {
+  display: flex; align-items: center; gap: clamp(20px, 2.5vw, 40px); font-size: 13px; font-weight: 600;
+  > a:not(.contact) { padding: 15px 0; position: relative; }
+  > a[aria-current], .active { color: var(--blue); }
+  > a[aria-current]:not(.contact)::after { content: ""; height: 3px; width: 18px; background: var(--yellow); position: absolute; bottom: 4px; left: 0; }
+  > a:hover { color: var(--blue); }
+}
+.links > .contact { display: inline-flex; align-items: center; gap: 22px; min-height: 46px; background: #102747; color: white; padding: 6px 6px 6px 21px; border-radius: 40px; font-size: 12px; font-weight: 500; transition: color .4s ease, background .4s ease, box-shadow .4s ease, transform .5s cubic-bezier(.22, 1, .36, 1); svg { transition: transform .5s cubic-bezier(.22, 1, .36, 1); } }
+.contactArrow { display: grid; place-items: center; width: 34px; height: 34px; flex-shrink: 0; border-radius: 50%; background: var(--yellow); color: #102747; transition: background .4s ease, transform .5s cubic-bezier(.22, 1, .36, 1); }
+.links > a:not(.contact) { transition: color .35s ease; }
+@media (hover: hover) { .links > .contact:hover { color: white; background: #1c385b; transform: translateY(-1px); box-shadow: 0 8px 24px #101b4220; } .contact:hover svg { transform: rotate(45deg); } .contact:hover .contactArrow { background: #fff68b; } }
+.contact:active { transform: translateY(0) scale(.985); }
+.toggle { display: none; background: none; border: 0; padding: 10px; color: var(--blue); cursor: pointer; }
+@media (max-width: 1000px) { .navigation { min-height: 86px; } .logo img { width: 174px; } .links { gap: 20px; font-size: 12px; } .contact { padding: 13px; gap: 8px; } }
+@media (max-width: 800px) {
+  .topbar > div { min-height: 32px; font-size: 10px; }
+  .topbar > div > div a:last-child { display: none; }
+  .navigation { min-height: 83px; }
+  .logo img { width: 167px; }
+  .toggle { display: inline-flex; }
+  .links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; padding: 18px 24px 24px; border-top: 1px solid var(--line); box-shadow: 0 20px 25px #14224b15; font-size: 15px; }
+  .open { display: flex; flex-direction: column; align-items: stretch; gap: 2px; }
+  .contact { justify-content: space-between; margin-top: 10px; }
+}
+@media (max-width: 390px) { .topbar > div > span { font-size: 9px; letter-spacing: 0; } }
+
+
+.home {
+  position: absolute;
+  top: 32px;
+  left: 0;
+  right: 0;
+  background: transparent;
+  color: white;
+  .topbar { display: none; }
+  .navigation { width: calc(89% - 28px); max-width: none; min-height: 80px; border-bottom: 1px solid #ffffff30; padding-bottom: 15px; }
+  .logo img { width: 191px; }
+  .links { gap: 28px; }
+  .links > a[aria-current], .links > a:hover { color: var(--yellow); }
+  .links > .contact { background: #ffffff0d; color: #fff; backdrop-filter: blur(12px); }
+  .links > .contact[aria-current="page"] { background: #ffffff18; color: var(--yellow); }
+  .links > .contact:hover { color: #fff; background: #ffffff1c; }
+  .toggle { color: white; }
+}
+@media (max-width: 1000px) { .home .links { gap: 19px; } }
+@media (max-width: 800px) {
+  .home { top: 23px; }
+  .home .navigation { width: calc(100% - 64px); }
+  .home .logo img { width: 165px; }
+  .home .links { top: calc(100% + 8px); left: 24px; right: 24px; background: #0c2448; color: white; border: 1px solid #ffffff35; border-radius: 18px; padding: 16px 22px; gap: 3px; }
+}
+@media (max-width: 370px) { .home .navigation { width: calc(100% - 54px); } .home .logo img { width: 146px; } }
