@@ -24,7 +24,7 @@ export default function PageBreadcrumb({ label }) {
       <p className={styles.description}>{page.description}</p>
       <Link href={page.href} className={styles.action}>{page.action}<span><ArrowUpRight size={20} /></span></Link>
     </div>
-    <div className={styles.signature} aria-hidden="true">{!["Nosotros", "Nuestras líneas", "Servicios"].includes(label) && <span>{page.number}</span>}<p>CHIMG / {label}</p></div>
+    <div className={styles.signature} aria-hidden="true"><p>CHIMG / {label}</p></div>
     <div className={styles.bottom}><span>AMBATO · SALCEDO</span><span>CONSTRUIMOS CONTIGO.</span></div>
     </section>
   );

@@ -1,4 +1,5 @@
 import HomeHero from "@/components/home-hero";
+import SocialSection from "@/components/social-section";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import ProjectBanner from "@/components/project-banner";
@@ -13,6 +14,7 @@ export default function Home() {
       <nav className={styles.lineNav} aria-label="Explora nuestras cinco líneas">
         <div className="container" data-reveal-group>{lines.map(line => <Link key={line.slug} href={`/lineas/${line.slug}`}><LineIcon name={line.icon} size={23} /><span>{line.name}</span><ArrowUpRight className={styles.lineNavArrow} size={14} /></Link>)}</div>
       </nav>
+      <SocialSection />
       <section className={`container ${styles.explore}`} aria-labelledby="explore-title">
         <p className="eyebrow" data-reveal>CONOCE CHIMG</p>
         <h2 className="section-title" id="explore-title" data-reveal>Un aliado en cada paso.</h2>
