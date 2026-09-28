@@ -1,4 +1,4 @@
-.hero { position: relative; isolation: isolate; overflow: hidden; margin: 14px; padding: 155px 5.5% 32px; border-radius: 28px; background: radial-gradient(ellipse at 90% 5%, #294f8d 0, transparent 60%), linear-gradient(125deg, #071e40, #132e61); color: white; }
+.hero { position: relative; isolation: isolate; overflow: hidden; margin: 14px; padding: 155px 5.5% 32px; border-radius: 28px; background: radial-gradient(ellipse at 90% 5%, var(--blue-glow) 0, transparent 60%), linear-gradient(125deg, var(--navy), var(--navy)); color: white; }
 .hero::before { content: ""; position: absolute; z-index: -1; width: 550px; height: 550px; border: 1px solid #ffffff12; border-radius: 50%; right: -130px; top: 90px; box-shadow: 0 0 0 75px #ffffff03, 0 0 0 150px #ffffff03; }
 .breadcrumb { display: flex; gap: 12px; align-items: center; font-size: 11px; color: #ccd6e7; margin-bottom: 32px; a { transition: color .3s; &:hover { color: var(--yellow); } } }
 .copy { position: relative; max-width: 900px; padding-bottom: 55px; }

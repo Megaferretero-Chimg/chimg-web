@@ -1,6 +1,6 @@
 .hero { position: relative; min-height: 592px; background: var(--navy); color: white; overflow: hidden; }
 .heroImage { object-fit: cover; object-position: 76% 48%; }
-.heroShade { position: absolute; inset: 0; background: linear-gradient(90deg, #111c49fa 0%, #15224ded 29%, #16234ba8 48%, #111c4912 77%), linear-gradient(0deg, #101b4266, transparent 40%); }
+.heroShade { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(var(--navy-rgb) / 0.9804) 0%, rgb(var(--navy-rgb) / 0.9294) 29%, rgb(var(--navy-rgb) / 0.6588) 48%, rgb(var(--navy-rgb) / 0.0706) 77%), linear-gradient(0deg, rgb(var(--navy-rgb) / 0.4), transparent 40%); }
 .heroInner { min-height: 592px; position: relative; display: flex; align-items: center; }
 .heroCopy { padding: 59px 0 52px; position: relative; z-index: 1; width: 750px; }
 .heroEyebrow { display: flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 600; letter-spacing: .2em; margin: 0 0 27px; span { width: 7px; height: 7px; background: var(--yellow); } }
@@ -17,8 +17,8 @@
 .sectionHeading { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; margin-bottom: 38px; > p { font-size: 13px; color: var(--muted); line-height: 1.8; margin: 0 0 2px; max-width: 390px; } }
 .lineGrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
 .lineCard { min-width: 0; h3 { font-size: 19px; font-weight: 600; letter-spacing: -.03em; margin: 16px 0 5px; } > p { font-size: 11px; color: var(--muted); margin: 0; } &:hover img { transform: scale(1.045); } &:hover .lineCircle { background: var(--yellow); color: var(--navy); } }
-.lineImage { position: relative; aspect-ratio: .79; overflow: hidden; border-radius: 4px; background: #d6d7d1; img { object-fit: cover; transition: transform .5s; } &::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, #111b424d, transparent 40%); pointer-events: none; } }
-.lineNumber { position: absolute; top: 13px; left: 14px; color: white; background: #101b4266; font-size: 10px; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; }
+.lineImage { position: relative; aspect-ratio: .79; overflow: hidden; border-radius: 4px; background: #d6d7d1; img { object-fit: cover; transition: transform .5s; } &::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgb(var(--navy-rgb) / 0.302), transparent 40%); pointer-events: none; } }
+.lineNumber { position: absolute; top: 13px; left: 14px; color: white; background: rgb(var(--navy-rgb) / 0.4); font-size: 10px; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; }
 .lineCircle { position: absolute; bottom: 15px; right: 14px; width: 33px; height: 33px; border-radius: 50%; background: white; display: grid; place-items: center; z-index: 1; transition: background .2s; }
 .linesNote { display: flex; align-items: center; justify-content: center; gap: 19px; padding-top: 28px; margin-top: 32px; border-top: 1px solid var(--line); font-size: 11px; color: var(--muted); }
 .about { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: center; padding-block: 106px; }
@@ -37,7 +37,7 @@
 .contactIntro { color: var(--muted); font-size: 13px; max-width: 390px; line-height: 1.8; margin: 23px 0 31px; }
 .branches { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
 .branch { border-top: 1px solid var(--line); padding-top: 23px; > p { font-size: 12px; min-height: 38px; line-height: 1.7; margin: 13px 0; } > a { font-size: 10px; gap: 12px; margin-top: 10px; } }
-.branchTitle { display: flex; justify-content: space-between; align-items: center; gap: 8px; h3 { display: flex; align-items: center; gap: 6px; font-size: 19px; letter-spacing: -.03em; margin: 0; } > span { color: var(--blue); background: #202b850b; padding: 4px 7px; border-radius: 2px; font-size: 9px; } }
+.branchTitle { display: flex; justify-content: space-between; align-items: center; gap: 8px; h3 { display: flex; align-items: center; gap: 6px; font-size: 19px; letter-spacing: -.03em; margin: 0; } > span { color: var(--blue); background: rgb(var(--blue-rgb) / 0.0431); padding: 4px 7px; border-radius: 2px; font-size: 9px; } }
 .hours { display: flex; flex-direction: column; gap: 4px; font-size: 10px; color: var(--muted); }
 .contactPhone { display: flex; align-items: center; gap: 14px; padding-top: 27px; margin-top: 22px; border-top: 1px solid var(--line); color: var(--blue); > div { display: flex; flex-direction: column; gap: 5px; } small { font-size: 8px; letter-spacing: .12em; color: var(--muted); } strong { font-size: 21px; font-weight: 500; } > svg:last-child { margin-left: auto; } }
 @media (min-width: 1600px) { .hero, .heroInner { min-height: 660px; } }
@@ -57,7 +57,7 @@
 @media (max-width: 800px) {
   .hero, .heroInner { min-height: 620px; }
   .heroCopy { width: 100%; padding-block: 58px 90px; }
-  .heroShade { background: linear-gradient(90deg, #111c49ed, #111c4980), linear-gradient(0deg, #111c4977, transparent); }
+  .heroShade { background: linear-gradient(90deg, rgb(var(--navy-rgb) / 0.9294), rgb(var(--navy-rgb) / 0.502)), linear-gradient(0deg, rgb(var(--navy-rgb) / 0.4667), transparent); }
   .heroCaption { font-size: 12px; bottom: 24px; }
   .heroCaption > div { font-size: 12px; }
   .heroScroll { display: none; }
@@ -133,7 +133,7 @@
 // Shared interior pages follow the rounded, spacious language of the homepage.
 .services { background: white; }
 .service { border: 1px solid var(--line); border-radius: 18px; padding: 28px; background: var(--paper); transition: transform .5s ease, box-shadow .5s ease; }
-@media (hover: hover) { .service:hover { transform: translateY(-4px); box-shadow: 0 14px 32px #101b420c; } }
+@media (hover: hover) { .service:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgb(var(--navy-rgb) / 0.0471); } }
 .lineImage { border-radius: 16px; }
-.projectBanner { margin: 14px; border-radius: 24px; background: linear-gradient(120deg, #071e40, #203c77); }
+.projectBanner { margin: 14px; border-radius: 24px; background: linear-gradient(120deg, var(--navy), var(--blue-glow)); }
 @media (max-width: 700px) { .projectBanner { margin: 8px; border-radius: 20px; } .service { padding: 24px; } }

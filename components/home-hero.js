@@ -83,8 +83,8 @@ export default function HomeHero() {
         <h1 id="hero-title"><span className={styles.titleLine}><span>Tú lo imaginas.</span></span><br /><span className={styles.titleLine}><span>Juntos, lo</span></span>{" "}<br /><span className={styles.titleLine}><em>hacemos.</em></span></h1>
         <p className={styles.description}>Todo para construir, renovar y dar vida<br className={styles.desktopBreak} /> a tus espacios. Un aliado en cada paso.</p>
         <div className={styles.actions}>
-          <Link href="/lineas" className={styles.primary}>Explora nuestras líneas <span><ArrowUpRight size={20} /></span></Link>
-          <Link href="/contacto" className={styles.secondary}>Hablemos de tu proyecto <ArrowUpRight size={17} /></Link>
+          <Link href="/product-lines" className={styles.primary}>Explora nuestras líneas <span><ArrowUpRight size={20} /></span></Link>
+          <Link href="/contact" className={styles.secondary}>Hablemos de tu proyecto <ArrowUpRight size={17} /></Link>
         </div>
       </div>
       <div className={styles.controls} role="group" aria-label="Seleccionar sucursal del banner">
@@ -95,8 +95,8 @@ export default function HomeHero() {
         {motionAllowed && <button type="button" className={styles.playback} onClick={() => setPaused(value => !value)} aria-label={paused ? "Reanudar presentación" : "Pausar presentación"}>{paused ? <Play size={14} /> : <Pause size={14} />}</button>}
       </div>
       <div className={styles.bottom}>
-        <Link href="/nosotros" className={styles.experience}><strong>25<span>+</span></strong><span>Años de experiencia.<br />Miles de ideas por construir.</span><ArrowUpRight size={18} /></Link>
-        <Link href="/contacto" className={styles.location} aria-label={`Visitar ${slides[active].name}`}>
+        <Link href="/about" className={styles.experience}><strong>25<span>+</span></strong><span>Años de experiencia.<br />Miles de ideas por construir.</span><ArrowUpRight size={18} /></Link>
+        <Link href="/contact" className={styles.location} aria-label={`Visitar ${slides[active].name}`}>
           <MapPin size={19} />
           <span className={styles.locationLabels}>
             {slides.map((slide, index) => <span key={slide.name} className={`${styles.locationLabel} ${active === index ? styles.locationLabelActive : ""}`} aria-hidden={active !== index}><small>{slide.type} · VEN A CONOCERNOS</small><span>{slide.name}</span></span>)}

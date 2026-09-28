@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight, Clock3, MapPin, MessageCircle, Phone } from "lucide-react";
 import ContactForm from "@/components/contact-form";
 import PageBreadcrumb from "@/components/page-breadcrumb";
@@ -11,9 +12,9 @@ export const metadata = { title: "Contacto", description: "Visita CHIMG en Ambat
 
 export default function Page() {
   return (
-    <main id="contenido">
+    <main id="main-content">
       <PageBreadcrumb label="Contacto" />
-      <section id="contacto" className={`container ${styles.contact}`} aria-labelledby="contact-title">
+      <section id="contact" className={`container ${styles.contact}`} aria-labelledby="contact-title">
         <div className={styles.intro} data-reveal-group>
           <p className="eyebrow">UNA CONVERSACIÓN. NUEVAS POSIBILIDADES.</p>
           <h2 className="section-title" id="contact-title">Conectemos.<br /><span>Hagámoslo posible.</span></h2>
@@ -23,6 +24,7 @@ export default function Page() {
             <a className={styles.channel} href={company.phoneHref}><span className={styles.icon}><Phone size={22} /></span><div><small>HABLEMOS DIRECTAMENTE</small><h3>{company.phone}</h3><p>Atención personalizada para tu proyecto.</p></div><ArrowUpRight size={20} /></a>
           </div>
           <div className={styles.localNote}><MapPin size={18} /><span>También te esperamos en <strong>Ambato y Salcedo.</strong></span></div>
+          <Link className="text-link" href="/business-cards">Conoce a nuestro equipo <ArrowUpRight size={18} /></Link>
         </div>
         <div data-reveal><ContactForm /></div>
       </section>

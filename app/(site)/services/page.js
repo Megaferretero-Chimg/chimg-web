@@ -16,9 +16,9 @@ const services = [
 
 export default function Page() {
   return (
-    <main id="contenido">
+    <main id="main-content">
       <PageBreadcrumb label="Servicios" />
-      <section className={styles.services} id="servicios" aria-labelledby="services-title">
+      <section className={styles.services} id="services" aria-labelledby="services-title">
         <div className="container"><div className={styles.sectionHeading} data-reveal-group><div><p className="eyebrow">CONTIGO, DE PRINCIPIO A FIN</p><h2 className="section-title" id="services-title">Más respaldo.<br />En cada paso.</h2></div><p>La diferencia está en cómo te acompañamos.<br />Descubre todo lo que podemos hacer por ti.</p></div>
           <div className={styles.serviceGrid} data-reveal-group>{services.map(({ icon: Icon, title, text }, index) => <div className={styles.service} key={title}><div><Icon size={31} strokeWidth={1.25} /><span>0{index + 1}</span></div><h3>{title}</h3><p>{text}</p></div>)}</div>
         </div>

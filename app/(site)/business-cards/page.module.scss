@@ -1,0 +1,13 @@
+.page { padding: 24px 0 88px; background: var(--paper); min-height: 65vh; }
+.breadcrumb { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 34px; color: var(--muted); font-size: 12px; }
+.breadcrumb a:hover { color: var(--blue); text-decoration: underline; }
+.heading { max-width: 680px; margin: 32px 0 40px; }
+.heading > p:last-child { color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 24px; }
+.preview { display: block; max-width: 400px; padding: 30px; border: 1px solid var(--line); border-radius: 18px; background: white; }
+.preview:hover { border-color: var(--blue); }
+.initials { display: grid; place-items: center; width: 76px; height: 76px; background: var(--yellow); color: var(--blue); border-radius: 16px; font-size: 27px; font-weight: 700; margin-bottom: 24px; }
+.preview h2 { font-size: 25px; line-height: 1.2; margin: 7px 0; letter-spacing: -.03em; }
+.preview p { color: var(--muted); font-size: 14px; margin: 8px 0; }
+.preview small { color: var(--muted); }
+.action { display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); padding-top: 20px; margin-top: 26px; font-size: 13px; font-weight: 700; color: var(--blue); }

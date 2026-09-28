@@ -16,7 +16,7 @@ export default function SiteHeader() {
   const headerRef = useRef(null);
   const navRef = useRef(null);
   const pathname = usePathname();
-  const overlay = ["/", "/nosotros", "/lineas", "/servicios", "/contacto"].includes(pathname);
+  const overlay = ["/", "/about", "/product-lines", "/services", "/contact"].includes(pathname);
   useEffect(() => {
     const media = window.matchMedia("(max-width: 800px)");
     const sync = () => { if (navRef.current) navRef.current.inert = media.matches && !open; };
@@ -61,7 +61,7 @@ export default function SiteHeader() {
     };
   }, [open]);
   return <header className={`${styles.header} ${overlay ? styles.home : ""}`} ref={headerRef}>
-    <div className={styles.topbar}><div className="container"><span>Más de 25 años construyendo contigo</span><div><Link href="/contacto"><MapPin size={13} /> Ambato & Salcedo</Link><a href={company.phoneHref}><Phone size={12} /> {company.phone}</a></div></div></div>
+    <div className={styles.topbar}><div className="container"><span>Más de 25 años construyendo contigo</span><div><Link href="/contact"><MapPin size={13} /> Ambato & Salcedo</Link><a href={company.phoneHref}><Phone size={12} /> {company.phone}</a></div></div></div>
     <div className={`container ${styles.navigation}`}>
       <Link href="/" className={styles.logo} aria-label="CHIMG, inicio" onClick={() => setOpen(false)}><Image src={overlay ? "/logo-chimg-w.png" : "/logo-chimg.png"} alt="CHIMG Mega Ferretero Importadores" width={199} height={66} preload /></Link>
       <button className={styles.toggle} type="button" ref={toggleRef} aria-label={open ? "Cerrar menú" : "Abrir menú"} aria-expanded={open} aria-controls="main-navigation" onClick={() => { setMenuLoaded(true); setOpen(value => !value); }}><Menu className={styles.menuIcon} aria-hidden="true" /><X className={styles.closeIcon} aria-hidden="true" /></button>
@@ -69,10 +69,10 @@ export default function SiteHeader() {
         {menuLoaded && <div className={styles.menuBackdrop} aria-hidden="true"><Image src={ambatoMenu} alt="" fill sizes="100vw" unoptimized /><Image src={salcedoMenu} alt="" fill sizes="100vw" unoptimized /><div /></div>}
         <div className={styles.menuBrand}><Image src="/logo-chimg-w.png" alt="CHIMG" width={165} height={55} /></div>
         <Link href="/" aria-current={pathname === "/" ? "page" : undefined} onClick={() => setOpen(false)}>Inicio</Link>
-        <Link href="/nosotros" aria-current={pathname === "/nosotros" ? "page" : undefined} onClick={() => setOpen(false)}>Nosotros</Link>
-        <Link href="/lineas" aria-current={pathname === "/lineas" ? "page" : pathname.startsWith("/lineas/") ? "location" : undefined} onClick={() => setOpen(false)}>Nuestras líneas</Link>
-        <Link href="/servicios" aria-current={pathname === "/servicios" ? "page" : undefined} onClick={() => setOpen(false)}>Servicios</Link>
-        <Link href="/contacto" aria-current={pathname === "/contacto" ? "page" : undefined} className={styles.contact} onClick={() => setOpen(false)}>Contacto <span className={styles.contactArrow} aria-hidden="true"><ArrowUpRight size={17} /></span></Link>
+        <Link href="/about" aria-current={pathname === "/about" ? "page" : undefined} onClick={() => setOpen(false)}>Nosotros</Link>
+        <Link href="/product-lines" aria-current={pathname === "/product-lines" ? "page" : pathname.startsWith("/product-lines/") ? "location" : undefined} onClick={() => setOpen(false)}>Nuestras líneas</Link>
+        <Link href="/services" aria-current={pathname === "/services" ? "page" : undefined} onClick={() => setOpen(false)}>Servicios</Link>
+        <Link href="/contact" aria-current={pathname === "/contact" ? "page" : undefined} className={styles.contact} onClick={() => setOpen(false)}>Contacto <span className={styles.contactArrow} aria-hidden="true"><ArrowUpRight size={17} /></span></Link>
         <div className={styles.menuFooter}><span>AMBATO · SALCEDO</span><p>Tu próximo proyecto<br />empieza aquí.</p></div>
       </nav>
     </div>

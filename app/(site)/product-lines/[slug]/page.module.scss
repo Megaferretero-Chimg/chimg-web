@@ -19,6 +19,6 @@
 }
 @media (max-width: 500px) { .image { height: 300px; } .categories { gap: 15px; h3 { font-size: 12px; } } .gallery figure > div { height: 260px; } .otherLines a { font-size: 12px; gap: 7px; } }
 
-.hero { margin: 14px; border-radius: 28px; overflow: hidden; background: linear-gradient(125deg, #071e40, #132e61); color: white; .copy > p { color: #d4deeb; } .copy > p:first-child { color: var(--yellow); } .note { color: #d4deeb; } }
+.hero { margin: 14px; border-radius: 28px; overflow: hidden; background: linear-gradient(125deg, var(--navy), var(--navy)); color: white; .copy > p { color: #d4deeb; } .copy > p:first-child { color: var(--yellow); } .note { color: #d4deeb; } }
 .image { border-radius: 18px; }
 @media (max-width: 700px) { .hero { margin: 8px; border-radius: 22px; } }

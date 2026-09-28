@@ -1,5 +1,5 @@
 .section { padding-top: 48px; }
-.panel { display: grid; grid-template-columns: .85fr 1.65fr; gap: 38px; align-items: center; padding: 38px; border-radius: 26px; background: radial-gradient(ellipse at 100% 0, #264b7a, transparent 65%), #0b2345; color: white; }
+.panel { display: grid; grid-template-columns: .85fr 1.65fr; gap: 38px; align-items: center; padding: 38px; border-radius: 26px; background: radial-gradient(ellipse at 100% 0, var(--blue-glow), transparent 65%), var(--navy); color: white; }
 .eyebrow { display: flex; align-items: center; gap: 8px; font-size: 8px; letter-spacing: .16em; margin: 0 0 18px; span { width: 5px; height: 5px; border-radius: 50%; background: var(--yellow); } }
 .intro h2 { font-size: clamp(28px, 2.6vw, 38px); font-weight: 500; letter-spacing: -.05em; line-height: 1.12; margin: 0; em { color: var(--yellow); font-style: normal; } }
 .intro > p:not(.eyebrow) { color: #bccde2; font-size: 12px; line-height: 1.8; max-width: 300px; margin: 18px 0; }

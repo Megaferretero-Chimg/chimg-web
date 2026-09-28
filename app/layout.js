@@ -1,7 +1,4 @@
 import "./globals.scss";
-import SiteHeader from "@/components/site-header";
-import SiteFooter from "@/components/site-footer";
-import PageMotion from "@/components/page-motion";
 
 export const metadata = {
   title: {
@@ -15,11 +12,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body>
-        <a href="#contenido" className="skip-link">Saltar al contenido</a>
-        <SiteHeader />
+        <a href="#main-content" className="skip-link">Saltar al contenido</a>
         {children}
-        <SiteFooter />
-        <PageMotion />
       </body>
     </html>
   );
