@@ -1,3 +1,4 @@
+import { getTranslator } from "@/lib/i18n/server";
 import { notFound } from "next/navigation";
 import PresentationCard from "@/components/presentation-card";
 import { getPresentationCard, presentationCards } from "@/lib/presentation-cards";
@@ -10,10 +11,11 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
+  const t = await getTranslator();
   const { slug } = await params;
   const card = getPresentationCard(slug);
   if (!card) return {};
-  return { title: `${card.name} · ${card.role}`, description: `Conecta con ${card.name}, ${card.role} en ${card.company}.` };
+  return { title: `${card.name} · ${t(card.role)}`, description: t("Conecta con {name}, {role} en {company}.", { name: card.name, role: t(card.role), company: card.company }) };
 }
 
 export default async function CardPage({ params }) {

@@ -122,3 +122,17 @@
   .controls button, .controls button > span, .selectionIndicator, .location, .locationLabel { transition: none; transition-delay: 0s; }
   .locationLabel { filter: none; transform: none; }
 }
+
+/* Keep the integrated social links clear of the store controls and footer. */
+@media (min-width: 701px) {
+  .hero { min-height: 850px; }
+  .content { top: 20%; }
+  .controls { left: auto; right: 5.5%; bottom: 112px; }
+}
+
+
+@media (max-width: 700px) {
+  .content { position: static; padding: 126px 24px 0; }
+}
+@media (max-width: 370px) { .content { padding: 114px 19px 0; } }
+

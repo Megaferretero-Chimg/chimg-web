@@ -1,3 +1,4 @@
+import { getTranslator } from "@/lib/i18n/server";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Clock3, MapPin, MessageCircle, Phone } from "lucide-react";
@@ -8,31 +9,32 @@ import ambato from "@/output/branches/ambato-clean-v2.png";
 import salcedo from "@/output/branches/salcedo-clean-v1.png";
 import styles from "./contact.module.scss";
 
-export const metadata = { title: "Contacto", description: "Visita CHIMG en Ambato y Salcedo. Consulta nuestros horarios y conversa con nuestro equipo por WhatsApp." };
+export async function generateMetadata() { const t = await getTranslator(); return { title: t("Contacto"), description: t("Visita CHIMG en Ambato y Salcedo. Consulta nuestros horarios y conversa con nuestro equipo por WhatsApp.") }; }
 
-export default function Page() {
+export default async function Page() {
+  const t = await getTranslator();
   return (
     <main id="main-content">
       <PageBreadcrumb label="Contacto" />
       <section id="contact" className={`container ${styles.contact}`} aria-labelledby="contact-title">
         <div className={styles.intro} data-reveal-group>
-          <p className="eyebrow">UNA CONVERSACIÓN. NUEVAS POSIBILIDADES.</p>
-          <h2 className="section-title" id="contact-title">Conectemos.<br /><span>Hagámoslo posible.</span></h2>
-          <p className={styles.description}>Cada proyecto empieza con una buena conversación. Elige cómo prefieres hablar con nosotros.</p>
+          <p className="eyebrow">{t("UNA CONVERSACIÓN. NUEVAS POSIBILIDADES.")}</p>
+          <h2 className="section-title" id="contact-title">{t("Conectemos.")}<br /><span>{t("Hagámoslo posible.")}</span></h2>
+          <p className={styles.description}>{t("Cada proyecto empieza con una buena conversación. Elige cómo prefieres hablar con nosotros.")}</p>
           <div className={styles.channels}>
-            <a className={styles.channel} href={whatsappUrl()} target="_blank" rel="noopener noreferrer"><span className={styles.icon}><MessageCircle size={24} /></span><div><small>ESCRÍBENOS</small><h3>WhatsApp</h3><p>Cuéntanos tu idea, a tu ritmo.</p></div><ArrowUpRight size={20} /></a>
-            <a className={styles.channel} href={company.phoneHref}><span className={styles.icon}><Phone size={22} /></span><div><small>HABLEMOS DIRECTAMENTE</small><h3>{company.phone}</h3><p>Atención personalizada para tu proyecto.</p></div><ArrowUpRight size={20} /></a>
+            <a className={styles.channel} href={whatsappUrl(t("Hola, CHIMG. Me gustaría recibir información para mi proyecto."))} target="_blank" rel="noopener noreferrer"><span className={styles.icon}><MessageCircle size={24} /></span><div><small>{t("ESCRÍBENOS")}</small><h3>{t("WhatsApp")}</h3><p>{t("Cuéntanos tu idea, a tu ritmo.")}</p></div><ArrowUpRight size={20} /></a>
+            <a className={styles.channel} href={company.phoneHref}><span className={styles.icon}><Phone size={22} /></span><div><small>{t("HABLEMOS DIRECTAMENTE")}</small><h3>{company.phone}</h3><p>{t("Atención personalizada para tu proyecto.")}</p></div><ArrowUpRight size={20} /></a>
           </div>
-          <div className={styles.localNote}><MapPin size={18} /><span>También te esperamos en <strong>Ambato y Salcedo.</strong></span></div>
-          <Link className="text-link" href="/business-cards">Conoce a nuestro equipo <ArrowUpRight size={18} /></Link>
+          <div className={styles.localNote}><MapPin size={18} /><span>{t("También te esperamos en")} <strong>{t("Ambato y Salcedo.")}</strong></span></div>
+          <Link className="text-link" href="/business-cards">{t("Conoce a nuestro equipo")} <ArrowUpRight size={18} /></Link>
         </div>
         <div data-reveal><ContactForm /></div>
       </section>
       <section className={`container ${styles.locations}`} aria-labelledby="locations-title">
-        <div className={styles.sectionHeading} data-reveal><div><p className="eyebrow">CERCA DE TI</p><h2 className="section-title" id="locations-title">Nos vemos en CHIMG.</h2></div><p>Dos ciudades. La misma forma de acompañarte.</p></div>
+        <div className={styles.sectionHeading} data-reveal><div><p className="eyebrow">{t("CERCA DE TI")}</p><h2 className="section-title" id="locations-title">{t("Nos vemos en CHIMG.")}</h2></div><p>{t("Dos ciudades. La misma forma de acompañarte.")}</p></div>
         <div className={styles.branchGrid} data-reveal-group>{branches.map((branch, index) => <article className={styles.branch} key={branch.name}>
-          <div className={styles.photo}><Image src={index === 0 ? ambato : salcedo} alt={`Sucursal CHIMG en ${branch.name}`} sizes="(max-width: 800px) 100vw, 50vw" /><span>{branch.type}</span></div>
-          <div className={styles.branchBody}><div className={styles.branchTitle}><h3>{branch.name}</h3><MapPin size={22} /></div><p className={styles.address}>{branch.address}</p><div className={styles.hours}><Clock3 size={17} /><div><span>{branch.weekdays}</span><span>{branch.saturday}</span><span>{branch.sunday}</span></div></div><a className={styles.mapLink} href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.mapQuery)}`} target="_blank" rel="noopener noreferrer">Cómo llegar a {branch.name}<ArrowUpRight size={19} /></a></div>
+          <div className={styles.photo}><Image src={index === 0 ? ambato : salcedo} alt={t("Sucursal CHIMG en {name}", { name: branch.name })} sizes="(max-width: 800px) 100vw, 50vw" /><span>{t(branch.type)}</span></div>
+          <div className={styles.branchBody}><div className={styles.branchTitle}><h3>{t(branch.name)}</h3><MapPin size={22} /></div><p className={styles.address}>{branch.address}</p><div className={styles.hours}><Clock3 size={17} /><div><span>{t(branch.weekdays)}</span><span>{t(branch.saturday)}</span><span>{t(branch.sunday)}</span></div></div><a className={styles.mapLink} href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.mapQuery)}`} target="_blank" rel="noopener noreferrer">{t("Cómo llegar a {name}", { name: branch.name })}<ArrowUpRight size={19} /></a></div>
         </article>)}</div>
       </section>
     </main>

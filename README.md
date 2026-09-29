@@ -80,3 +80,14 @@ Las tarjetas individuales usan una vista independiente de pantalla completa, sin
 La tarjeta usa el banner existente de Ambato como fondo fijo, sin selector de sucursales. Incluye entrada escalonada de los contactos, estados de foco y hover, un único acceso a WhatsApp, enlace directo de We Chat y copia del enlace con confirmación o mensaje de error. Las animaciones se desactivan con `prefers-reduced-motion`. Por debajo de 700 px se usa una tarjeta de dos páginas con transición horizontal, gesto táctil lateral, botones de navegación y flechas de teclado. La vista usa 100dvh y respeta las áreas seguras del dispositivo. La página oculta queda inerte. En alturas extremas o con texto ampliado, el contenido puede desplazarse dentro de la tarjeta para mantener todos los controles accesibles.
 
 Guardar contacto descarga una vCard (.vcf) generada desde los datos estáticos: nombre, apellido, empresa, cargo, teléfono y correo. El orden de acciones es Guardar contacto, Correo electrónico, WhatsApp y We Chat.
+
+## Idiomas
+
+La web y las tarjetas admiten español e inglés. El servidor elige el idioma por la cookie `chimg-language` o, si no existe, por `Accept-Language` (preferencias del navegador, sin geolocalización). Se respetan variantes regionales y prioridades. Si el navegador no incluye un idioma admitido se usa inglés; sin cabecera se usa español.
+
+El selector ES/EN está en la navegación (dentro del menú en móvil) y en la cabecera de cada tarjeta. La elección dura un año y actualiza la ruta actual sin perder los formularios o la página de la tarjeta. Los textos originales están en español; las traducciones se mantienen en `lib/i18n/en.json`. Traducir con `getTranslator()` en el servidor y `useLanguage()` en componentes cliente. Las URL permanecen en inglés.
+
+Incluye metadatos, etiquetas accesibles, consultas preparadas de WhatsApp y el cargo del archivo vCard. Los datos propios (nombres, correos, teléfonos y direcciones) se conservan. La selección por petición requiere el servidor Next.js; no es una exportación HTML estática.
+
+Verificación con el servidor local activo: `node --test --test-isolation=none tests/i18n.test.mjs`. Puede usarse `TEST_BASE_URL` para otro puerto.
+
