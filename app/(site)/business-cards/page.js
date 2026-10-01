@@ -14,7 +14,7 @@ export default async function CardsPage() {
       <div className={styles.heading}><p className="eyebrow">{t("PERSONAS QUE TE ACOMPAÑAN")}</p><h1 className="section-title">{t("Conecta con nuestro equipo.")}</h1><p>{t("Encuentra a tu contacto en CHIMG y elige cómo conversar.")}</p></div>
       <div className={styles.grid}>{presentationCards.map(card => <Link className={styles.preview} href={`/business-cards/${card.slug}`} key={card.slug}>
         <span className={styles.initials} aria-hidden="true">{getCardInitials(card.name)}</span>
-        <p>{card.company}</p><h2>{t(card.name)}</h2><p>{t(card.role)}</p>{card.location && <small>{t(card.location)}</small>}
+        <p>{card.company}</p><h2>{t(card.name)}</h2>{card.role && <p>{t(card.role)}</p>}{card.location && <small>{t(card.location)}</small>}
         <span className={styles.action}>{t("Ver tarjeta de contacto")} <ArrowUpRight size={18} aria-hidden="true" /></span>
       </Link>)}</div>
     </div>
