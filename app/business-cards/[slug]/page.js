@@ -15,7 +15,11 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const card = getPresentationCard(slug);
   if (!card) return {};
-  return { title: `${card.name} · ${t(card.role)}`, description: t("Conecta con {name}, {role} en {company}.", { name: card.name, role: t(card.role), company: card.company }) };
+  const title = [card.name, card.role && t(card.role)].filter(Boolean).join(" · ");
+  const description = card.role && card.company
+    ? t("Conecta con {name}, {role} en {company}.", { name: card.name, role: t(card.role), company: card.company })
+    : [card.name, card.role && t(card.role), card.company].filter(Boolean).join(" · ");
+  return { title, description };
 }
 
 export default async function CardPage({ params }) {

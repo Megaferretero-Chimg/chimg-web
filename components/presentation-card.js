@@ -109,13 +109,14 @@ export default function PresentationCard({ card }) {
           <p className={styles.eyebrow}><span /> {t("PERSONAS QUE CONSTRUYEN CONTIGO")}</p>
           <div className={styles.profile}>
             <div className={styles.portrait}>
-              {card.photo ? <Image src={card.photo} alt={t(card.name)} fill sizes="(max-width: 700px) 110px, 150px" preload /> : <span aria-hidden="true">{getCardInitials(card.name)}</span>}
+              {card.photo ? <Image src={card.photo} alt={t(card.name)} fill sizes="180px" preload /> : <span aria-hidden="true">{getCardInitials(card.name)}</span>}
             </div>
-            <div className={styles.profileCaption}><span>{card.company}</span><p>{t(card.role)}</p>{card.location && <span className={styles.location}><MapPin size={14} aria-hidden="true" />{t(card.location)}</span>}</div>
           </div>
           <h1 id="card-name">{t(card.name)}</h1>
+          {card.role && <p className={styles.role}>{t(card.role)}</p>}
           <p className={styles.intro}>{t("Las grandes ideas empiezan")}<br />{t("con una buena conversación.")}</p>
-          <button className={styles.mobileNext} type="button" onClick={() => changePage(1)}>{t("Ver mis contactos")} <ArrowRight size={18} aria-hidden="true" /></button>
+          <button className={styles.mobileNext} type="button" onClick={() => changePage(1)}>{t("Conectemos")} <ArrowRight size={18} aria-hidden="true" /></button>
+          {card.location && <p className={styles.location}><MapPin size={14} aria-hidden="true" />{t(card.location)}{card.countryCode === "EC" && <Image className={styles.flag} src="/icons/ecuador-flag.png" alt={t("ECUADOR")} width={30} height={20} />}</p>}
         </div>
         <div id="card-contact" className={styles.contact} inert={mobile && page !== 1}>
           <div className={styles.contactHeading}><span className={styles.kicker}>{t("CONTACTO DIRECTO")}</span><ArrowUpRight size={24} aria-hidden="true" /></div>
