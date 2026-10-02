@@ -11,8 +11,7 @@ export default function SalcedoGallery({ photos, categories, labels }) {
   const [selected, setSelected] = useState(null);
   const [limit, setLimit] = useState(12);
   const dialog = useRef(null);
-  const families = categories.slice(1);
-  const featured = families.filter((_, index) => index % Math.max(1, Math.ceil(families.length / 8)) === 0).map(category => photos.find(photo => photo.categories.includes(category))).filter(Boolean);
+  const featured = photos;
   const current = featured[slide % featured.length];
   const visible = filter === categories[0] ? photos : photos.filter(photo => photo.categories.includes(filter));
   useEffect(() => {
@@ -25,7 +24,11 @@ export default function SalcedoGallery({ photos, categories, labels }) {
     <p className="eyebrow">{labels.eyebrow}</p>
     <h2 className="section-title" id="gallery-title">{labels.title}</h2>
     {current && <div className={styles.presentation} role="region" aria-roledescription={labels.carousel} aria-label={labels.presentation} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
-      <div className={styles.slidePhoto}>{featured.map((photo, position) => <div key={photo.src} className={`${styles.slideLayer} ${position === slide % featured.length ? styles.slideActive : ""}`} aria-hidden={position !== slide % featured.length}><Image src={photo.src} alt={`${labels.photos} · ${position + 1}`} fill sizes="(max-width: 800px) 100vw, 85vw" /></div>)}</div>
+      <div className={styles.slidePhoto}>{featured.map((photo, position) => {
+        const active = slide % featured.length;
+        if (![active, (active + 1) % featured.length, (active - 1 + featured.length) % featured.length].includes(position)) return null;
+        return <div key={photo.src} className={`${styles.slideLayer} ${position === active ? styles.slideActive : ""}`} aria-hidden={position !== active}><Image src={photo.src} alt={`${labels.photos} · ${position + 1}`} fill loading="eager" sizes="(max-width: 800px) 100vw, 85vw" /></div>;
+      })}</div>
       <div className={styles.slideFooter}><div className={styles.controls}><button type="button" onClick={() => setSlide(value => (value - 1 + featured.length) % featured.length)} aria-label={labels.previous}>←</button><span>{slide % featured.length + 1} / {featured.length}</span><button type="button" onClick={() => setSlide(value => (value + 1) % featured.length)} aria-label={labels.next}>→</button></div></div>
     </div>}
     <div className={styles.familyHeading}><h3>{labels.families}</h3><p>{labels.choose}</p></div>
