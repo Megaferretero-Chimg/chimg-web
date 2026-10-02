@@ -1,12 +1,10 @@
 import { getTranslator } from "@/lib/i18n/server";
-import Image from "next/image";
+import BranchFacades from "@/components/branch-facades";
 import Link from "next/link";
 import { ArrowUpRight, BadgeCheck, MapPin } from "lucide-react";
 
 import PageBreadcrumb from "@/components/page-breadcrumb";
 import ProjectBanner from "@/components/project-banner";
-import ambato from "@/output/branches/ambato-clean-v2.png";
-import salcedo from "@/output/branches/salcedo-clean-v1.png";
 import branchStyles from "./branches.module.scss";
 
 import styles from "@/styles/corporate.module.scss";
@@ -36,9 +34,9 @@ export default async function Page() {
           <p>{t("Visítanos en Ambato y Salcedo. Nuestro equipo te espera para acompañarte en cada paso.")}</p>
         </div>
         <div className={branchStyles.grid} data-reveal-group>
-          {[{ name: "Ambato", type: "Nuestra matriz", image: ambato }, { name: "Salcedo", type: "Nuestra sucursal", image: salcedo }].map(branch => (
+          {[{ name: "Ambato", type: "Nuestra matriz",  }, { name: "Salcedo", type: "Nuestra sucursal",  }].map(branch => (
             <figure className={branchStyles.card} key={branch.name}>
-              <div className={branchStyles.photo}><Image src={branch.image} alt={t("Fachada de CHIMG en {name}", { name: branch.name })} sizes="(max-width: 700px) 100vw, 50vw" /></div>
+              <div className={branchStyles.photo}><BranchFacades branch={branch.name} alt={t("Fachada de CHIMG en {name}", { name: branch.name })} labels={{ carousel: t("Carrusel"), previous: t("Foto anterior"), next: t("Foto siguiente"), view: t("Ver foto"), play: t("Reproducir"), pause: t("Pausar") }} /></div>
               <figcaption><div><span>{t(branch.type)}</span><h3><MapPin size={18} />{t(branch.name)}</h3></div><Link href={branch.name === "Salcedo" ? "/branches/salcedo" : "/branches/ambato"} className="text-link" aria-label={t("Conoce CHIMG {name}", { name: branch.name })}>{t(branch.name === "Salcedo" ? "Explorar Salcedo" : "Explorar Ambato")} <ArrowUpRight size={18} /></Link></figcaption>
             </figure>
           ))}
