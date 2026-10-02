@@ -4,7 +4,7 @@
 .slidePhoto { position: relative; aspect-ratio: 16 / 9; img { object-fit: cover; } }
 .slideLayer { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 650ms ease-in-out; }
 .slideActive { opacity: 1; }
-.slideFooter { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 28px; h3 { font-size: clamp(22px, 3vw, 34px); margin: 8px 0; } p { margin: 0; color: var(--muted); line-height: 1.6; } }
+.slideFooter { display: flex; justify-content: center; align-items: center; gap: 24px; padding: 18px; }
 .controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; button { border: 1px solid #ccd2dc; background: white; border-radius: 22px; padding: 10px 15px; font: inherit; cursor: pointer; } span { white-space: nowrap; font-size: 13px; } }
 .familyHeading { margin-top: 64px; h3 { font-size: 27px; margin-bottom: 12px; } p { color: var(--muted); line-height: 1.7; } }
 .controls button:focus-visible { outline: 3px solid #e5b900; outline-offset: 3px; }
