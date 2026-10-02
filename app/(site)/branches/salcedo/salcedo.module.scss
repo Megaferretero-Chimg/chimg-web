@@ -1,0 +1,2 @@
+.hero { padding-block: 70px 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; > img { width: 100%; height: auto; border-radius: 18px; } p { line-height: 1.8; color: var(--muted); } a:last-child { display: block; margin-top: 18px; } }
+@media (max-width: 800px) { .hero { grid-template-columns: 1fr; padding-block: 40px 20px; gap: 30px; } }
