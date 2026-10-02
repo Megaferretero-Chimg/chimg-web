@@ -2,12 +2,14 @@
 .description { max-width: 700px; color: var(--muted); line-height: 1.8; }
 .presentation { margin-top: 32px; border-radius: 20px; overflow: hidden; background: #f1f4f8; }
 .slidePhoto { position: relative; aspect-ratio: 16 / 9; img { object-fit: cover; } }
+.slideLayer { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 650ms ease-in-out; }
+.slideActive { opacity: 1; }
 .slideFooter { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 28px; h3 { font-size: clamp(22px, 3vw, 34px); margin: 8px 0; } p { margin: 0; color: var(--muted); line-height: 1.6; } }
 .controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; button { border: 1px solid #ccd2dc; background: white; border-radius: 22px; padding: 10px 15px; font: inherit; cursor: pointer; } span { white-space: nowrap; font-size: 13px; } }
 .familyHeading { margin-top: 64px; h3 { font-size: 27px; margin-bottom: 12px; } p { color: var(--muted); line-height: 1.7; } }
 .controls button:focus-visible { outline: 3px solid #e5b900; outline-offset: 3px; }
 @media (max-width: 700px) { .slideFooter { flex-direction: column; align-items: flex-start; padding: 20px; } .slidePhoto { aspect-ratio: 3 / 2; } .familyHeading { margin-top: 40px; } }
-.filters { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 30px; button { border: 1px solid #d9dce2; border-radius: 24px; background: white; padding: 11px 17px; font: inherit; cursor: pointer; &[aria-pressed="true"] { background: #063b91; color: white; border-color: #063b91; } } }
+.filters { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 30px; button { border: 1px solid #d9dce2; border-radius: 24px; background: white; padding: 11px 17px; font: inherit; cursor: pointer; &[aria-pressed="true"] { background: var(--blue); color: white; border-color: var(--blue); } } }
 .count { color: var(--muted); margin-block: 24px; }
 .more { margin-top: 30px; cursor: pointer; }
 .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
@@ -24,13 +26,12 @@
 .image { transition: box-shadow 280ms ease; img { transition: transform 500ms cubic-bezier(.22, 1, .36, 1); } }
 .card span { transition: color 220ms ease; }
 @media (hover: hover) and (pointer: fine) {
-  .filters button:hover, .controls button:hover, .more:hover, .close:hover { transform: translateY(-3px); box-shadow: 0 7px 18px rgb(6 59 145 / 15%); }
-  .filters button:hover { border-color: #063b91; }
-  .controls button:hover { background: #063b91; color: white; border-color: #063b91; }
-  .card:hover { transform: translateY(-4px); .image { box-shadow: 0 12px 26px rgb(6 59 145 / 14%); img { transform: scale(1.045); } } span { color: #063b91; } }
+  .filters button:hover, .controls button:hover, .more:hover, .close:hover { transform: translateY(-3px); box-shadow: 0 7px 18px rgb(var(--blue-rgb) / 15%); }
+  .filters button:hover { border-color: var(--blue); }
+  .controls button:hover { background: var(--blue); color: white; border-color: var(--blue); }
+  .card:hover { transform: translateY(-4px); .image { box-shadow: 0 12px 26px rgb(var(--blue-rgb) / 14%); img { transform: scale(1.045); } } span { color: var(--blue); } }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .slidePhoto img { animation: slideReveal 550ms ease both; }
   .card { animation: cardReveal 350ms ease both; }
   .dialog[open] { animation: dialogReveal 220ms ease both; }
   .dialog[open]::backdrop { animation: backdropReveal 220ms ease both; }

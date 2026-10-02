@@ -37,7 +37,7 @@ export default async function Page() {
           {[{ name: "Ambato", type: "Nuestra matriz",  }, { name: "Salcedo", type: "Nuestra sucursal",  }].map(branch => (
             <figure className={branchStyles.card} key={branch.name}>
               <div className={branchStyles.photo}><BranchFacades branch={branch.name} alt={t("Fachada de CHIMG en {name}", { name: branch.name })} labels={{ carousel: t("Carrusel"), previous: t("Foto anterior"), next: t("Foto siguiente"), view: t("Ver foto"), play: t("Reproducir"), pause: t("Pausar") }} /></div>
-              <figcaption><div><span>{t(branch.type)}</span><h3><MapPin size={18} />{t(branch.name)}</h3></div><Link href={branch.name === "Salcedo" ? "/branches/salcedo" : "/branches/ambato"} className="text-link" aria-label={t("Conoce CHIMG {name}", { name: branch.name })}>{t(branch.name === "Salcedo" ? "Explorar Salcedo" : "Explorar Ambato")} <ArrowUpRight size={18} /></Link></figcaption>
+              <figcaption><div><span>{t(branch.type)}</span><h3><MapPin size={18} />{t(branch.name)}</h3></div><Link href={branch.name === "Salcedo" ? "/branches/salcedo" : "/branches/ambato"} className="text-link branch-explore" aria-label={t("Conoce CHIMG {name}", { name: branch.name })}>{t(branch.name === "Salcedo" ? "Explorar Salcedo" : "Explorar Ambato")} <ArrowUpRight size={18} /></Link></figcaption>
             </figure>
           ))}
         </div>

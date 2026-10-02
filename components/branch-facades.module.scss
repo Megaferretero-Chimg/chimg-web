@@ -1,8 +1,8 @@
-.slider { border-radius: 16px; overflow: hidden; background: #063b91; min-width: 0; }
-.frame { aspect-ratio: 3 / 2; overflow: hidden; img { display: block; width: 100%; height: 100%; object-fit: cover; } }
+.slider { border-radius: 16px; overflow: hidden; background: var(--blue); min-width: 0; }
+.frame { position: relative; aspect-ratio: 3 / 2; overflow: hidden; img { display: block; width: 100%; height: 100%; object-fit: cover; } }
+.layer { position: absolute; inset: 0; opacity: 0; transition: opacity 650ms ease-in-out; pointer-events: none; }
+.active { opacity: 1; }
 .controls { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px; padding: 12px; button { display: grid; place-items: center; padding: 8px 13px; border: 1px solid rgb(255 255 255 / 35%); border-radius: 24px; color: white; background: transparent; cursor: pointer; font: inherit; font-size: 12px; transition: transform 200ms ease, background 200ms ease, color 200ms ease; &:focus-visible { outline: 3px solid #ffdc00; outline-offset: 3px; } &:active { transform: scale(.95); } } }
 .dots { display: flex; gap: 8px; button { padding: 0; width: 9px; height: 9px; border: 0; background: rgb(255 255 255 / 45%); &[aria-pressed="true"] { background: #ffdc00; } } }
-@media (hover: hover) { .controls button:hover { background: #ffdc00; color: #063b91; transform: translateY(-2px); } }
-@media (prefers-reduced-motion: no-preference) { .frame img { animation: reveal 500ms ease; } }
-@keyframes reveal { from { opacity: .35; } to { opacity: 1; } }
+@media (hover: hover) { .controls button:hover { background: #ffdc00; color: var(--blue); transform: translateY(-2px); } }
 @media (prefers-reduced-motion: reduce) { .controls button { transform: none !important; } }
