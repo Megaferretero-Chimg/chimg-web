@@ -16,3 +16,4 @@
 .ready { margin-top: 20px; padding: 16px; border: 1px solid #f7e72750; border-radius: 14px; background: #ffffff08; p { font-size: 13px; color: #e3ebf7; line-height: 1.7; margin: 0 0 12px; } a { width: 100%; justify-content: space-between; border-radius: 24px; background: var(--yellow); color: var(--navy); &:hover { background: #fff36a; } } }
 @media (max-width: 540px) { .form { padding: 26px; border-radius: 22px; } }
 @media (forced-colors: active) { .form :is(input, select, textarea):focus { outline: 2px solid Highlight; } }
+.form { overflow: visible; }

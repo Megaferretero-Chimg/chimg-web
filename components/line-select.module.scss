@@ -5,3 +5,6 @@
 .error { color: #ffc3bc; font-size: 11px; margin: 8px 0 0; }
 @keyframes appear { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 @media (forced-colors: active) { .trigger:focus-visible, .options li.active { outline: 2px solid Highlight; } }
+.options { max-height: 250px; overflow-y: auto; overscroll-behavior: contain; background: var(--blue); border-color: #ffffff35; scrollbar-width: thin; scrollbar-color: var(--yellow) transparent; }
+@media (max-width: 540px) { .options { max-height: 220px; } }
+@media (prefers-reduced-motion: reduce) { .options { animation: none; } .trigger, .trigger > svg { transition: none; } }
