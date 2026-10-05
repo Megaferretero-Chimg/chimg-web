@@ -5,8 +5,8 @@ import Image from "next/image";
 import styles from "./branch-facades.module.scss";
 
 const images = {
-  Ambato: ["/imgs/sucursales/ambato/DSC00788.webp", "/imgs/sucursales/ambato/DSC00666.webp"],
-  Salcedo: ["/imgs/sucursales/salcedo/DSC00626.webp", "/imgs/sucursales/salcedo/DSC00621.webp", "/imgs/sucursales/salcedo/DSC00630.webp", "/imgs/sucursales/salcedo/DSC00624.webp"],
+  Ambato: ["/imgs/ambato/DSC00788.webp", "/imgs/ambato/DSC00666.webp"],
+  Salcedo: ["/imgs/salcedo/DSC00626.webp", "/imgs/salcedo/DSC00621.webp", "/imgs/salcedo/DSC00630.webp", "/imgs/salcedo/DSC00624.webp"],
 };
 
 export default function BranchFacades({ branch, alt, labels }) {

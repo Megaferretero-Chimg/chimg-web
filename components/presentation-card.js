@@ -1,4 +1,6 @@
 "use client";
+import WhatsAppIcon from "@/components/whatsapp-icon";
+
 import LanguageSelector, { useLanguage } from "@/components/language-selector";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
@@ -9,7 +11,7 @@ import { getCardInitials, getCardLinks } from "@/lib/presentation-cards";
 import ambato from "@/output/banners/chimg-widescreen-v1.png";
 import styles from "./presentation-card.module.scss";
 
-const icons = { contact: UserRoundPlus, phone: Phone, email: Mail, whatsapp: MessageCircle, wechat: MessageCircle, website: Globe, location: MapPin };
+const icons = { contact: UserRoundPlus, phone: Phone, email: Mail, whatsapp: WhatsAppIcon, wechat: MessageCircle, website: Globe, location: MapPin };
 
 function subscribeMobile(callback) {
   const media = window.matchMedia("(max-width: 700px)");

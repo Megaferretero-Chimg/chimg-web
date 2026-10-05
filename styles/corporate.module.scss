@@ -140,3 +140,6 @@
 
 // The home hero owns its entrance sequence; avoid a second animation on its parent.
 .homePage { animation: none; }
+.lineNav > div { display: flex; overflow-x: auto; scrollbar-width: thin; }
+.lineNav a { flex: 0 0 180px; }
+@media (max-width: 800px) { .lineNav a { flex-basis: 125px; } }

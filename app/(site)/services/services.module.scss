@@ -1,17 +1,12 @@
-.intro {
-  background: var(--blue);
-  color: white;
-  padding: 155px 0 32px;
-  nav { display: flex; gap: 10px; font-size: 11px; color: #ffffffb3; }
-  h1 { margin: 16px 0 0; font-size: clamp(32px, 4vw, 48px); line-height: 1.1; }
-}
-.intro + section { padding-block: 32px 56px; }
-.serviceGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.delivery { grid-column: 1 / -1; order: 1; }
-.deliveryImage { display: block; width: 100%; max-width: 900px; height: auto; margin: 24px auto 0; border-radius: 12px; }
-@media (max-width: 800px) {
-  .serviceGrid { grid-template-columns: 1fr; }
-  .delivery { grid-column: auto; order: 0; }
-  .intro { margin: 8px; border-radius: 22px; padding: 125px 16px 24px; }
-  .intro + section { padding-block: 20px 40px; }
-}
+.services { padding: 36px 0 48px; background: linear-gradient(180deg, #f4f6ff, white 65%); }
+.serviceGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.service { display: flex; flex-direction: column; position: relative; overflow: hidden; padding: 34px; border: 1px solid #dfe5f4; border-radius: 26px; background: white; box-shadow: 0 6px 24px #0022b507; transition: transform .5s, box-shadow .5s, border-color .5s; animation: arrive .7s cubic-bezier(.22,1,.36,1) backwards; animation-delay: var(--delay); h2 { font-size: clamp(25px, 2.6vw, 35px); letter-spacing: -.04em; line-height: 1.13; margin: 28px 0 16px; max-width: 480px; } > p { color: var(--muted); font-size: 14px; line-height: 1.8; max-width: 470px; margin: 0 0 28px; } > a { display: inline-flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 18px; margin-top: auto; border-top: 1px solid var(--line); color: var(--blue); font-size: 12px; font-weight: 600; svg { transition: transform .4s; } &:hover svg { transform: translate(4px,-4px); } } &:hover { transform: translateY(-5px); border-color: #b5c3ef; box-shadow: 0 18px 40px #0022b512; } }
+.cardTop { display: flex; justify-content: space-between; align-items: center; }
+.icon { display: grid; place-items: center; width: 68px; height: 68px; border-radius: 20px; color: var(--blue); background: #edf1ff; transition: transform .5s, background .5s; }
+.number { font-size: 12px; color: #8a98b4; letter-spacing: .1em; }
+.service:hover .icon { transform: rotate(-6deg); background: var(--yellow); }
+.service:first-child { background: var(--blue); color: white; border-color: var(--blue); .icon { background: var(--yellow); color: var(--blue); } .number { color: #ffffff80; } > p { color: #ffffffc9; } > a { color: var(--yellow); border-color: #ffffff35; } }
+.closing { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 28px 0 0; h2 { font-size: clamp(24px, 3vw, 36px); letter-spacing: -.04em; margin: 0; } a { display: inline-flex; align-items: center; gap: 24px; background: var(--yellow); color: var(--blue); border-radius: 30px; padding: 14px 22px; font-size: 13px; transition: transform .4s; &:hover { transform: translateY(-3px); } } }
+@keyframes arrive { from { opacity: 0; translate: 0 16px; } to { opacity: 1; translate: 0 0; } }
+@media (max-width: 700px) { .services { padding-block: 24px 36px; } .serviceGrid { grid-template-columns: 1fr; gap: 16px; } .service { padding: 26px; border-radius: 22px; h2 { margin-top: 22px; } } .closing { flex-direction: column; align-items: flex-start; gap: 18px; } }
+@media (prefers-reduced-motion: reduce) { .service { animation: none; transition: none; } .icon, .service > a svg, .closing a { transition: none; } .service:hover, .service:hover .icon { transform: none; } }

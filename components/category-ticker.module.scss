@@ -1,0 +1,7 @@
+.ticker { overflow: hidden; background: white; border-bottom: 1px solid var(--line); }
+.track { display: flex; width: max-content; animation: category-loop 65s linear infinite; }
+.group { display: flex; flex-shrink: 0; a { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 25px 28px; min-height: 88px; color: var(--blue); font-size: 13px; font-weight: 600; white-space: nowrap; border-right: 1px solid var(--line); transition: background .3s, color .3s; svg { flex-shrink: 0; } svg:last-child { color: var(--blue); } &:hover { background: var(--yellow); } &:focus-visible { outline: 3px solid var(--yellow); outline-offset: -4px; } } }
+.ticker:hover .track, .ticker:focus-within .track { animation-play-state: paused; }
+@keyframes category-loop { to { transform: translateX(-50%); } }
+@media (max-width: 700px) { .group a { flex-direction: column; gap: 7px; padding: 16px 20px; min-height: 90px; font-size: 11px; svg:last-child { display: none; } } }
+@media (prefers-reduced-motion: reduce) { .track { animation: none; width: auto; } .group { flex-wrap: wrap; width: 100%; a { flex: 1 1 160px; } } .group[aria-hidden="true"] { display: none; } }

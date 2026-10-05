@@ -1,0 +1,269 @@
+[
+  {
+    "name": "Hogar y Decoración",
+    "branches": {
+      "ambato": [
+        "/imgs/hogarydecoracion/ambato/DSC00686.webp",
+        "/imgs/hogarydecoracion/ambato/DSC00697.webp",
+        "/imgs/hogarydecoracion/ambato/DSC00698.webp",
+        "/imgs/hogarydecoracion/ambato/DSC00720.webp",
+        "/imgs/hogarydecoracion/ambato/DSC00751.webp",
+        "/imgs/hogarydecoracion/ambato/DSC00765.webp",
+        "/imgs/hogarydecoracion/ambato/DSC00766.webp",
+        "/imgs/hogarydecoracion/ambato/DSC00768.webp",
+        "/imgs/hogarydecoracion/ambato/DSC00770.webp",
+        "/imgs/hogarydecoracion/ambato/DSC00772.webp",
+        "/imgs/hogarydecoracion/ambato/DSC00773.webp",
+        "/imgs/hogarydecoracion/ambato/DSC00776.webp",
+        "/imgs/hogarydecoracion/ambato/DSC00777.webp",
+        "/imgs/hogarydecoracion/ambato/img.jpg",
+        "/imgs/hogarydecoracion/ambato/img2.jpg",
+        "/imgs/hogarydecoracion/ambato/img3.jpg"
+      ],
+      "salcedo": []
+    },
+    "image": "/imgs/hogarydecoracion/ambato/DSC00686.webp"
+  },
+  {
+    "name": "Herramienta Eléctrica",
+    "branches": {
+      "ambato": [
+        "/imgs/herramientas-electricas/ambato/DSC00712.webp",
+        "/imgs/herramientas-electricas/ambato/DSC00713.webp",
+        "/imgs/herramientas-electricas/ambato/DSC00714.webp",
+        "/imgs/herramientas-electricas/ambato/img3.jpg"
+      ],
+      "salcedo": [
+        "/imgs/herramientas-electricas/salcedo/DSC00514.webp",
+        "/imgs/herramientas-electricas/salcedo/DSC00517.webp"
+      ]
+    },
+    "image": "/imgs/herramientas-electricas/ambato/DSC00712.webp"
+  },
+  {
+    "name": "Maquinaria Industrial",
+    "branches": {
+      "ambato": [
+        "/imgs/maquinaria-industrial/ambato/DSC00672.webp",
+        "/imgs/maquinaria-industrial/ambato/DSC00674.webp",
+        "/imgs/maquinaria-industrial/ambato/DSC00679.webp",
+        "/imgs/maquinaria-industrial/ambato/DSC00682.webp",
+        "/imgs/maquinaria-industrial/ambato/DSC00715.webp"
+      ],
+      "salcedo": [
+        "/imgs/maquinaria-industrial/salcedo/DSC00520.webp",
+        "/imgs/maquinaria-industrial/salcedo/DSC00562.webp"
+      ]
+    },
+    "image": "/imgs/maquinaria-industrial/ambato/DSC00672.webp"
+  },
+  {
+    "name": "Jardinería",
+    "branches": {
+      "ambato": [
+        "/imgs/jardineria/ambato/DSC00675.webp",
+        "/imgs/jardineria/ambato/DSC00677.webp",
+        "/imgs/jardineria/ambato/DSC00678.webp"
+      ],
+      "salcedo": [
+        "/imgs/jardineria/salcedo/DSC00550.webp",
+        "/imgs/jardineria/salcedo/DSC00559.webp"
+      ]
+    },
+    "image": "/imgs/jardineria/ambato/DSC00675.webp"
+  },
+  {
+    "name": "Herramientas",
+    "branches": {
+      "ambato": [
+        "/imgs/herramientas/ambato/DSC00688.webp",
+        "/imgs/herramientas/ambato/DSC00689.webp",
+        "/imgs/herramientas/ambato/DSC00702.webp"
+      ],
+      "salcedo": []
+    },
+    "image": "/imgs/herramientas/ambato/DSC00688.webp"
+  },
+  {
+    "name": "Materiales de construcción",
+    "branches": {
+      "ambato": [
+        "/imgs/materiales-construccion/ambato/DSC00641.webp",
+        "/imgs/materiales-construccion/ambato/DSC00643.webp",
+        "/imgs/materiales-construccion/ambato/DSC00649.webp",
+        "/imgs/materiales-construccion/ambato/DSC00657.webp",
+        "/imgs/materiales-construccion/ambato/DSC00663.webp",
+        "/imgs/materiales-construccion/ambato/DSC00780.webp"
+      ],
+      "salcedo": [
+        "/imgs/materiales-construccion/salcedo/DSC00553.webp",
+        "/imgs/materiales-construccion/salcedo/DSC00589.webp",
+        "/imgs/materiales-construccion/salcedo/DSC00592.webp",
+        "/imgs/materiales-construccion/salcedo/DSC00595.webp",
+        "/imgs/materiales-construccion/salcedo/DSC00598.webp",
+        "/imgs/materiales-construccion/salcedo/DSC00604.webp",
+        "/imgs/materiales-construccion/salcedo/DSC00610.webp",
+        "/imgs/materiales-construccion/salcedo/DSC00613.webp"
+      ]
+    },
+    "image": "/imgs/materiales-construccion/ambato/DSC00641.webp"
+  },
+  {
+    "name": "Pintura",
+    "branches": {
+      "ambato": [
+        "/imgs/pintura/ambato/DSC00687.webp",
+        "/imgs/pintura/ambato/DSC00690.webp",
+        "/imgs/pintura/ambato/DSC00691.webp",
+        "/imgs/pintura/ambato/DSC00694.webp",
+        "/imgs/pintura/ambato/DSC00695.webp",
+        "/imgs/pintura/ambato/DSC00696.webp",
+        "/imgs/pintura/ambato/DSC00699.webp",
+        "/imgs/pintura/ambato/DSC00700.webp"
+      ],
+      "salcedo": [
+        "/imgs/pintura/salcedo/DSC00499.webp",
+        "/imgs/pintura/salcedo/DSC00532.webp"
+      ]
+    },
+    "image": "/imgs/pintura/ambato/DSC00687.webp"
+  },
+  {
+    "name": "Pisos",
+    "branches": {
+      "ambato": [
+        "/imgs/piso/ambato/DSC00735.webp",
+        "/imgs/piso/ambato/DSC00752.webp",
+        "/imgs/piso/ambato/DSC00753.webp",
+        "/imgs/piso/ambato/DSC00754.webp",
+        "/imgs/piso/ambato/DSC00755.webp",
+        "/imgs/piso/ambato/DSC00756.webp",
+        "/imgs/piso/ambato/DSC00760.webp",
+        "/imgs/piso/ambato/DSC00763.webp",
+        "/imgs/piso/ambato/DSC00764.webp",
+        "/imgs/piso/ambato/img3.jpg"
+      ],
+      "salcedo": [
+        "/imgs/piso/salcedo/DSC00469.webp"
+      ]
+    },
+    "image": "/imgs/piso/ambato/DSC00735.webp"
+  },
+  {
+    "name": "Herrajería",
+    "branches": {
+      "ambato": [
+        "/imgs/herrajeria/ambato/DSC00701.webp",
+        "/imgs/herrajeria/ambato/DSC00703.webp",
+        "/imgs/herrajeria/ambato/DSC00704.webp",
+        "/imgs/herrajeria/ambato/DSC00705.webp",
+        "/imgs/herrajeria/ambato/DSC00706.webp"
+      ],
+      "salcedo": []
+    },
+    "image": "/imgs/herrajeria/ambato/DSC00701.webp"
+  },
+  {
+    "name": "Plomería",
+    "branches": {
+      "ambato": [
+        "/imgs/plomeria/ambato/DSC00692.webp",
+        "/imgs/plomeria/ambato/DSC00717.webp",
+        "/imgs/plomeria/ambato/DSC00722.webp",
+        "/imgs/plomeria/ambato/DSC00723.webp",
+        "/imgs/plomeria/ambato/DSC00724.webp",
+        "/imgs/plomeria/ambato/DSC00725.webp"
+      ],
+      "salcedo": [
+        "/imgs/plomeria/salcedo/DSC00493.webp",
+        "/imgs/plomeria/salcedo/DSC00502.webp",
+        "/imgs/plomeria/salcedo/DSC00526.webp",
+        "/imgs/plomeria/salcedo/DSC00529.webp",
+        "/imgs/plomeria/salcedo/DSC00535.webp",
+        "/imgs/plomeria/salcedo/DSC00556.webp"
+      ]
+    },
+    "image": "/imgs/plomeria/ambato/DSC00692.webp"
+  },
+  {
+    "name": "Electricidad",
+    "branches": {
+      "ambato": [
+        "/imgs/electricidad/ambato/DSC00681.webp"
+      ],
+      "salcedo": []
+    },
+    "image": "/imgs/electricidad/ambato/DSC00681.webp"
+  },
+  {
+    "name": "Electrodomésticos",
+    "branches": {
+      "ambato": [
+        "/imgs/electrodomesticos/ambato/DSC00741.webp"
+      ],
+      "salcedo": []
+    },
+    "image": "/imgs/electrodomesticos/ambato/DSC00741.webp"
+  },
+  {
+    "name": "Baño",
+    "branches": {
+      "ambato": [
+        "/imgs/bano/ambato/DSC00731.webp",
+        "/imgs/bano/ambato/DSC00743.webp",
+        "/imgs/bano/ambato/DSC00744.webp",
+        "/imgs/bano/ambato/DSC00745.webp",
+        "/imgs/bano/ambato/DSC00747.webp",
+        "/imgs/bano/ambato/DSC00748.webp",
+        "/imgs/bano/ambato/DSC00749.webp",
+        "/imgs/bano/ambato/DSC00750.webp",
+        "/imgs/bano/ambato/DSC00757.webp",
+        "/imgs/bano/ambato/DSC00758.webp",
+        "/imgs/bano/ambato/DSC00759.webp",
+        "/imgs/bano/ambato/img4.jpg"
+      ],
+      "salcedo": [
+        "/imgs/bano/salcedo/DSC00490.webp",
+        "/imgs/bano/salcedo/DSC00547.webp",
+        "/imgs/bano/salcedo/DSC00565.webp"
+      ]
+    },
+    "image": "/imgs/bano/ambato/DSC00731.webp"
+  },
+  {
+    "name": "Iluminación",
+    "branches": {
+      "ambato": [
+        "/imgs/iluminacion/ambato/DSC00671.webp",
+        "/imgs/iluminacion/ambato/DSC00685.webp"
+      ],
+      "salcedo": [
+        "/imgs/iluminacion/salcedo/DSC00487.webp",
+        "/imgs/iluminacion/salcedo/electricos-botarga.webp"
+      ]
+    },
+    "image": "/imgs/iluminacion/ambato/DSC00671.webp"
+  },
+  {
+    "name": "Cocina",
+    "branches": {
+      "ambato": [
+        "/imgs/cocina/ambato/DSC00733.webp",
+        "/imgs/cocina/ambato/DSC00736.webp",
+        "/imgs/cocina/ambato/DSC00738.webp",
+        "/imgs/cocina/ambato/DSC00739.webp",
+        "/imgs/cocina/ambato/DSC00740.webp",
+        "/imgs/cocina/ambato/DSC00742.webp",
+        "/imgs/cocina/ambato/img.jpg",
+        "/imgs/cocina/ambato/img2.jpg"
+      ],
+      "salcedo": [
+        "/imgs/cocina/salcedo/DSC00460.webp",
+        "/imgs/cocina/salcedo/DSC00463.webp",
+        "/imgs/cocina/salcedo/DSC00466.webp",
+        "/imgs/cocina/salcedo/DSC00475.webp"
+      ]
+    },
+    "image": "/imgs/cocina/ambato/DSC00733.webp"
+  }
+]

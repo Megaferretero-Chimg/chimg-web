@@ -13,7 +13,7 @@
 .branchBody { padding: 28px; }
 .branchTitle { display: flex; align-items: center; justify-content: space-between; color: var(--blue); h3 { color: var(--ink); font-weight: 500; font-size: 30px; letter-spacing: -.04em; margin: 0; } }
 .address { font-size: 13px; color: var(--muted); margin: 10px 0 22px; }
-.hours { display: flex; align-items: flex-start; gap: 12px; padding-top: 20px; border-top: 1px solid #dde3ec; color: var(--blue); div { display: grid; gap: 6px; color: var(--muted); font-size: 12px; } }
+.hours { display: flex; align-items: flex-start; gap: 12px; margin-top: 22px; padding-top: 20px; border-top: 1px solid #dde3ec; color: var(--blue); div { display: grid; gap: 6px; color: var(--muted); font-size: 12px; } }
 .mapLink { display: flex; justify-content: space-between; align-items: center; padding: 17px 0 0; margin-top: 18px; color: var(--blue); font-size: 12px; font-weight: 600; svg { transition: transform .4s; } }
 @media (hover: hover) { .channel:hover { transform: translateY(-3px); border-color: #c8d2e5; box-shadow: 0 16px 40px rgb(var(--navy-rgb) / 0.0431); > svg { transform: translate(2px, -2px); } } .mapLink:hover svg { transform: translate(2px, -2px); } }
 @media (max-width: 1000px) { .contact { gap: 35px; } .channel { padding: 18px; gap: 12px; } .icon { width: 42px; height: 42px; } }

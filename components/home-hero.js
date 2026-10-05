@@ -1,4 +1,6 @@
 "use client";
+import WhatsAppIcon from "@/components/whatsapp-icon";
+
 import { useLanguage } from "@/components/language-selector";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
@@ -11,7 +13,7 @@ import eventDesktop from "@/output/banners/chimg-event-desktop-v4.webp";
 import eventMobile from "@/output/banners/chimg-event-mobile-corrected.webp";
 import anniversaryDesktop from "@/output/banners/chimg-25-years-both-branches.webp";
 import anniversaryMobile from "@/output/banners/chimg-25-years-mobile.webp";
-import serviceDesktop from "@/public/imgs/sucursales/salcedo/cajas-botarga.webp";
+import serviceDesktop from "@/public/imgs/salcedo/cajas-botarga.webp";
 import serviceMobile from "@/output/banners/chimg-service-mobile-v2.webp";
 import showroomDesktop from "@/output/banners/chimg-showroom-desktop.webp";
 import showroomMobile from "@/output/banners/chimg-showroom-mobile.webp";
@@ -97,7 +99,7 @@ export default function HomeHero({ children }) {
         <h1 id="hero-title"><span className={styles.titleLine}><span>{t("Tú lo imaginas.")}{" "}{t("Juntos, lo")}{" "}<em>{t("hacemos.")}</em></span></span></h1>
         <p className={styles.description}>{t("Todo para construir, renovar y dar vida")}<br className={styles.desktopBreak} /> {t("a tus espacios. Un aliado en cada paso.")}</p>
         <div className={styles.actions}>
-          <Link href="/contact" className={styles.primary}>{t("Trabajemos juntos")} <span><ArrowUpRight size={20} /></span></Link>
+          <Link href="/contact" className={styles.primary}>{t("Trabajemos juntos")} <span><WhatsAppIcon size={20} /></span></Link>
         </div>
       </div>
       <div className={styles.socialDock}>{children}</div>

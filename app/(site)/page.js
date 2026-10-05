@@ -5,12 +5,9 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import ProjectBanner from "@/components/project-banner";
 import LineIcon from "@/components/line-icon";
-const categories = [
-  { name: "Hogar y Decoración", icon: "home", href: "/product-lines/home-living" },
-  { name: "Herramienta Eléctrica", icon: "drill", href: "/product-lines/power-tools" },
-  { name: "Maquinaria Industrial", icon: "machinery", href: "/product-lines/machinery" },
-  { name: "Jardinería", icon: "garden", href: "/product-lines/lawn-garden" },
-];
+import tickerStyles from "@/components/category-ticker.module.scss";
+import { lines } from "@/lib/site";
+const categories = lines.map(line => ({ ...line, href: `/product-lines/${line.slug}` }));
 import styles from "@/styles/corporate.module.scss";
 
 export default async function Home() {
@@ -18,8 +15,8 @@ export default async function Home() {
   return (
     <main id="main-content" className={styles.homePage}>
       <HomeHero><SocialSection /></HomeHero>
-      <nav className={styles.lineNav} aria-label={t("Explora nuestras categorías")}>
-        <div className="container" data-reveal-group>{categories.map(category => <Link key={category.name} href={category.href}><LineIcon name={category.icon} size={23} /><span>{t(category.name)}</span><ArrowUpRight className={styles.lineNavArrow} size={14} /></Link>)}</div>
+      <nav className={tickerStyles.ticker} aria-label={t("Explora nuestras categorías")}>
+        <div className={tickerStyles.track}>{[0, 1].map(copy => <div className={tickerStyles.group} key={copy} aria-hidden={copy === 1 ? true : undefined}>{categories.map(category => <Link key={category.name} href={category.href} tabIndex={copy === 1 ? -1 : undefined}><LineIcon name={category.icon} size={25} /><span>{t(category.name)}</span><ArrowUpRight size={15} /></Link>)}</div>)}</div>
       </nav>
       <section className={`container ${styles.explore}`} aria-labelledby="explore-title">
         <p className="eyebrow" data-reveal>{t("CONOCE CHIMG")}</p>

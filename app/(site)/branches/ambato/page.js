@@ -1,22 +1,17 @@
+import Image from "next/image";
+import { ArrowDown, ArrowUpRight, MapPin, Clock3 } from "lucide-react";
 import PageBreadcrumb from "@/components/page-breadcrumb";
-import BranchFacades from "@/components/branch-facades";
-import Link from "next/link";
+import WhatsAppIcon from "@/components/whatsapp-icon";
+import AmbatoJourney from "@/components/ambato-journey";
 import { getTranslator } from "@/lib/i18n/server";
 import { branches, whatsappUrl } from "@/lib/site";
-import { ambatoCategories, ambatoPhotos } from "@/lib/ambato-gallery";
-import AmbatoGallery from "@/components/salcedo-gallery";
+import galleries from "@/lib/product-galleries.json";
 import styles from "./ambato.module.scss";
-
-export async function generateMetadata() { const t = await getTranslator(); return { title: t("Matriz Ambato"), description: t("Explora la matriz CHIMG en Ambato: herramientas, maquinaria, hogar, baños, cocinas, acabados y materiales para construcción.") }; }
+export async function generateMetadata() { const t = await getTranslator(); return { title: t("Matriz Ambato"), description: t("Conoce nuestra matriz en Ambato y recorre sus exhibiciones.") }; }
 export default async function Page() {
-  const t = await getTranslator();
-  const branch = branches.find(branch => branch.name === "Ambato");
-  return <main id="main-content">
-    <PageBreadcrumb label="Matriz Ambato" />
-    <section className={`container ${styles.hero}`}>
-      <div><Link href="/about" className="text-link">← {t("Nuestras sucursales")}</Link><p className="eyebrow">CHIMG · {t("MATRIZ AMBATO")}</p><h2 className="section-title">{t("Todo para tu proyecto, en Ambato.")}</h2><p>{t("Recorre nuestras líneas de productos y encuentra soluciones para construir, renovar y equipar tus espacios.")}</p><p>{branch.address}</p><p>{t(branch.weekdays)}<br />{t(branch.saturday)}<br />{t(branch.sunday)}</p><a className="button button-yellow" href={whatsappUrl(t("Hola, CHIMG. Me gustaría consultar productos de la matriz Ambato."))} target="_blank" rel="noopener noreferrer">{t("Consultar disponibilidad")}</a><a className="text-link" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.mapQuery)}`} target="_blank" rel="noopener noreferrer">{t("Cómo llegar")}</a></div>
-      <BranchFacades branch="Ambato" alt={t("Fachada de CHIMG en Ambato")} labels={{ carousel: t("Carrusel"), previous: t("Foto anterior"), next: t("Foto siguiente"), view: t("Ver foto"), play: t("Reproducir"), pause: t("Pausar") }} />
-    </section>
-    <AmbatoGallery categories={ambatoCategories.map(category => t(category))} photos={ambatoPhotos.map(photo => ({ ...photo, categories: photo.categories.map(category => t(category)) }))} labels={{ eyebrow: t("EXPLORA NUESTRAS LÍNEAS"), title: t("Galería de imágenes"), description: t("Elige una línea para ver sus productos y exhibiciones. Consulta con nuestro equipo la disponibilidad de cada artículo."), filter: t("Filtrar por línea de productos"), photos: t("fotos"), enlarge: t("Ampliar imagen"), close: t("Cerrar"), more: t("Ver más fotos"), carousel: t("Carrusel"), presentation: t("Presentación de nuestras líneas"), slideDescription: t("Descubre nuestras exhibiciones y encuentra ideas para tu proyecto."), previous: t("Foto anterior"), next: t("Foto siguiente"), play: t("Reproducir"), pause: t("Pausar"), families: t("Nuestras líneas de productos"), choose: t("Elige una familia para ver su galería de imágenes.") }} />
-  </main>;
+ const t = await getTranslator(); const branch = branches.find(item => item.name === "Ambato");
+ return <main id="main-content"><PageBreadcrumb label="Matriz Ambato" />
+ <section className={styles.arrival} aria-labelledby="ambato-title"><div className={styles.title}><span>{t("EL PUNTO DE PARTIDA")}</span><h2 id="ambato-title">Ambato<span>.</span></h2><p>{t("Entra. Explora. Imagina tu próximo proyecto.")}</p></div><div className={styles.facade}><Image src="/imgs/ambato/DSC00788.webp" alt={t("Fachada de CHIMG en Ambato")} fill sizes="100vw" priority /><a href="#recorrido">{t("Recorre la matriz")}<ArrowDown size={20} /></a></div></section>
+ <section id="recorrido" className={styles.journey}><div className={`container ${styles.journeyHeading}`}><span>{t("POR DENTRO")}</span><h2>{t("Un lugar. Muchas posibilidades.")}</h2><p>{t("Muévete entre nuestras categorías y descubre lo que te espera en Ambato.")}</p></div><AmbatoJourney categories={galleries.filter(item => item.branches.ambato.length)} /></section>
+ <section className={`container ${styles.visit}`} aria-labelledby="visit-title"><div><span>{t("NOS VEMOS AQUÍ")}</span><h2 id="visit-title">{t("Ven con tu próxima idea.")}</h2><a className={styles.whatsapp} href={whatsappUrl(t("Hola, CHIMG. Me gustaría consultar productos de la matriz Ambato."))} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={22} />{t("Conversemos por WhatsApp")}</a></div><div className={styles.visitDetails}><div><MapPin size={23} /><section><h3>{t("Ubicación")}</h3><p>{branch.address}</p><a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.mapQuery)}`} target="_blank" rel="noopener noreferrer">{t("Cómo llegar")}<ArrowUpRight size={17} /></a></section></div><div><Clock3 size={23} /><section><h3>{t("Horarios")}</h3><p>{t(branch.weekdays)}<br />{t(branch.saturday)}<br />{t(branch.sunday)}</p></section></div></div></section></main>;
 }

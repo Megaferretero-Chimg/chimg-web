@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import BranchCategoryExplorer from "./branch-category-explorer";
 import styles from "./salcedo-gallery.module.scss";
 
 export default function SalcedoGallery({ photos, categories, labels }) {
@@ -11,6 +12,7 @@ export default function SalcedoGallery({ photos, categories, labels }) {
   const [selected, setSelected] = useState(null);
   const [limit, setLimit] = useState(12);
   const dialog = useRef(null);
+  const results = useRef(null);
   const featured = photos;
   const current = featured[slide % featured.length];
   const visible = filter === categories[0] ? photos : photos.filter(photo => photo.categories.includes(filter));
@@ -32,8 +34,8 @@ export default function SalcedoGallery({ photos, categories, labels }) {
       <div className={styles.slideFooter}><div className={styles.controls}><button type="button" onClick={() => setSlide(value => (value - 1 + featured.length) % featured.length)} aria-label={labels.previous}>←</button><span>{slide % featured.length + 1} / {featured.length}</span><button type="button" onClick={() => setSlide(value => (value + 1) % featured.length)} aria-label={labels.next}>→</button></div></div>
     </div>}
     <div className={styles.familyHeading}><h3>{labels.families}</h3><p>{labels.choose}</p></div>
-    <div className={styles.filters} role="group" aria-label={labels.filter}>{categories.map(category => <button type="button" key={category} aria-pressed={filter === category} onClick={() => { setFilter(category); setLimit(12); }}>{category}</button>)}</div>
-    {filter && <><p className={styles.count} role="status">{filter} · {visible.length} {labels.photos}</p>
+    <BranchCategoryExplorer categories={categories} photos={photos} selected={filter} labels={labels} onSelect={category => { setFilter(category); setLimit(12); window.setTimeout(() => results.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" }), 50); }} />
+    {filter && <><p ref={results} className={styles.count} role="status">{filter} · {visible.length} {labels.photos}</p>
     <div className={styles.grid}>{visible.slice(0, limit).map((photo, position) => <button type="button" className={styles.card} key={photo.src} onClick={() => open(photo)} aria-label={`${labels.enlarge} ${position + 1}`}><div className={styles.image}><Image src={photo.src} alt={`${labels.photos} · ${position + 1}`} fill sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw" /></div></button>)}</div>
     {limit < visible.length && <button type="button" className={`button button-yellow ${styles.more}`} onClick={() => setLimit(current => current + 12)}>{labels.more}</button>}</>}
     <dialog ref={dialog} aria-label={labels.enlarge} className={styles.dialog} onClick={event => { if (event.target === event.currentTarget) dialog.current.close(); }}>
