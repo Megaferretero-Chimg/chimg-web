@@ -1,9 +1,10 @@
+import PageBreadcrumb from "@/components/page-breadcrumb";
 import { getTranslator } from "@/lib/i18n/server";
 import BranchFacades from "@/components/branch-facades";
 import Link from "next/link";
-import { ArrowUpRight, Clock3, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, Clock3, MapPin, Phone } from "lucide-react";
 import ContactForm from "@/components/contact-form";
-import PageBreadcrumb from "@/components/page-breadcrumb";
+
 import { branches, company, whatsappUrl } from "@/lib/site";
 import styles from "./contact.module.scss";
 
@@ -14,17 +15,13 @@ export default async function Page() {
   return (
     <main id="main-content">
       <PageBreadcrumb label="Contacto" />
-      <section id="contact" className={`container ${styles.contact}`} aria-labelledby="contact-title">
+      <section id="contact" className={`container ${styles.contact}`} aria-label={t("Contacto")}>
         <div className={styles.intro} data-reveal-group>
-          <p className="eyebrow">{t("UNA CONVERSACIÓN. NUEVAS POSIBILIDADES.")}</p>
-          <h2 className="section-title" id="contact-title">{t("Conectemos.")}<br /><span>{t("Hagámoslo posible.")}</span></h2>
-          <p className={styles.description}>{t("Cada proyecto empieza con una buena conversación. Elige cómo prefieres hablar con nosotros.")}</p>
           <div className={styles.channels}>
-            <a className={styles.channel} href={whatsappUrl(t("Hola, CHIMG. Me gustaría recibir información para mi proyecto."))} target="_blank" rel="noopener noreferrer"><span className={styles.icon}><MessageCircle size={24} /></span><div><small>{t("ESCRÍBENOS")}</small><h3>{t("WhatsApp")}</h3><p>{t("Cuéntanos tu idea, a tu ritmo.")}</p></div><ArrowUpRight size={20} /></a>
+            <a className={styles.channel} href={whatsappUrl(t("Hola, CHIMG. Me gustaría recibir información para mi proyecto."))} target="_blank" rel="noopener noreferrer"><span className={styles.icon}><span className={styles.whatsappIcon} aria-hidden="true" /></span><div><small>{t("ESCRÍBENOS")}</small><h3>{t("WhatsApp")}</h3><p>{t("Cuéntanos tu idea, a tu ritmo.")}</p></div><ArrowUpRight size={20} /></a>
             <a className={styles.channel} href={company.phoneHref}><span className={styles.icon}><Phone size={22} /></span><div><small>{t("HABLEMOS DIRECTAMENTE")}</small><h3>{company.phone}</h3><p>{t("Atención personalizada para tu proyecto.")}</p></div><ArrowUpRight size={20} /></a>
           </div>
-          <div className={styles.localNote}><MapPin size={18} /><span>{t("También te esperamos en")} <strong>{t("Ambato y Salcedo.")}</strong></span></div>
-          <Link className="text-link" href="/business-cards">{t("Conoce a nuestro equipo")} <ArrowUpRight size={18} /></Link>
+          <div className={styles.quickLocations}>{branches.map(branch => <a key={branch.name} href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.mapQuery)}`} target="_blank" rel="noopener noreferrer"><MapPin size={20} /><div><h3>{t(branch.name === "Ambato" ? "Matriz Ambato" : "Sucursal Salcedo")}</h3><p>{branch.address}</p></div><ArrowUpRight size={18} /></a>)}</div>
         </div>
         <div data-reveal><ContactForm /></div>
       </section>

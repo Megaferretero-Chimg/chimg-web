@@ -1,18 +1,20 @@
-import { getTranslator } from "@/lib/i18n/server";
-import { Headphones, Ruler, Truck, Wrench } from "lucide-react";
-
 import PageBreadcrumb from "@/components/page-breadcrumb";
+import { getTranslator } from "@/lib/i18n/server";
+import { ShieldCheck, Ruler, Truck, Wrench } from "lucide-react";
+
+import Link from "next/link";
 import ProjectBanner from "@/components/project-banner";
 
 import styles from "@/styles/corporate.module.scss";
+import pageStyles from "./services.module.scss";
 
-export async function generateMetadata() { const t = await getTranslator(); return { title: t("Servicios"), description: t("Asesoría, entrega a domicilio, soporte técnico y atención comercial para acompañar tu proyecto.") }; }
+export async function generateMetadata() { const t = await getTranslator(); return { title: t("Servicios"), description: t("Diseño de interiores, reparaciones, remodelaciones e instalaciones, entregas a nivel nacional y garantías.") }; }
 
 const services = [
-  { icon: Ruler, title: "Asesoría para tu espacio", text: "Te acompañamos con atención personalizada y diseño de interiores." },
-  { icon: Truck, title: "Llegamos a tu proyecto", text: "Entrega a domicilio con cobertura nacional. Consulta condiciones y tiempos." },
-  { icon: Wrench, title: "Respaldo que continúa", text: "Servicio técnico, reparación, mantenimiento y cobertura de garantías." },
-  { icon: Headphones, title: "Comprar es más fácil", text: "Venta telefónica y opciones de crédito. Consulta requisitos con nuestro equipo." },
+  { icon: Ruler, title: "Diseño de Interiores", text: "Te ayudamos a elegir materiales, acabados y detalles para crear espacios funcionales que reflejen tu estilo." },
+  { icon: Wrench, title: "Reparaciones, Remodelaciones e Instalaciones", text: "Te acompañamos en la reparación, renovación e instalación de tus espacios. Cuéntanos qué necesitas para conocer las opciones para tu proyecto." },
+  { icon: Truck, title: "Entregas y Cobertura a nivel Nacional", text: "Llevamos tus productos a todo el Ecuador. Coordina con nuestro equipo el destino, los costos y los tiempos de entrega." },
+  { icon: ShieldCheck, title: "Garantías", text: "Te orientamos sobre la garantía de tus productos y te acompañamos en su gestión, según las condiciones de cada marca." },
 ];
 
 export default async function Page() {
@@ -20,9 +22,9 @@ export default async function Page() {
   return (
     <main id="main-content">
       <PageBreadcrumb label="Servicios" />
-      <section className={styles.services} id="services" aria-labelledby="services-title">
-        <div className="container"><div className={styles.sectionHeading} data-reveal-group><div><p className="eyebrow">{t("CONTIGO, DE PRINCIPIO A FIN")}</p><h2 className="section-title" id="services-title">{t("Más respaldo.")}<br />{t("En cada paso.")}</h2></div><p>{t("La diferencia está en cómo te acompañamos.")}<br />{t("Descubre todo lo que podemos hacer por ti.")}</p></div>
-          <div className={styles.serviceGrid} data-reveal-group>{services.map(({ icon: Icon, title, text }, index) => <div className={styles.service} key={title}><div><Icon size={31} strokeWidth={1.25} /><span>0{index + 1}</span></div><h3>{t(title)}</h3><p>{t(text)}</p></div>)}</div>
+      <section className={styles.services} id="services" aria-labelledby="page-title">
+        <div className="container">
+          <div className={`${styles.serviceGrid} ${pageStyles.serviceGrid}`} data-reveal-group>{services.map(({ icon: Icon, title, text }, index) => <div className={styles.service} key={title}><div><Icon size={31} strokeWidth={1.25} /><span>0{index + 1}</span></div><h3>{t(title)}</h3><p>{t(text)}</p></div>)}</div>
         </div>
       </section>
       <ProjectBanner />

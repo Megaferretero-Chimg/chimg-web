@@ -15,10 +15,11 @@ export default function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [menuLoaded, setMenuLoaded] = useState(false);
   const toggleRef = useRef(null);
+  const closeRef = useRef(null);
   const headerRef = useRef(null);
   const navRef = useRef(null);
   const pathname = usePathname();
-  const overlay = ["/", "/about", "/product-lines", "/services", "/contact"].includes(pathname);
+  const overlay = true;
   useEffect(() => {
     const media = window.matchMedia("(max-width: 800px)");
     const sync = () => { if (navRef.current) navRef.current.inert = media.matches && !open; };
@@ -30,6 +31,7 @@ export default function SiteHeader() {
     if (!open) return;
     const mobile = window.matchMedia("(max-width: 800px)");
     if (!mobile.matches) return;
+    closeRef.current?.focus();
     const previousOverflow = document.body.style.overflow;
     const previousHtmlOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = "hidden";
@@ -41,7 +43,7 @@ export default function SiteHeader() {
     function onKeyDown(event) {
       if (event.key === "Escape") { setOpen(false); toggleRef.current?.focus(); }
       if (event.key === "Tab") {
-        const items = [toggleRef.current, ...navRef.current.querySelectorAll("a[href], button, select")];
+        const items = [...navRef.current.querySelectorAll("a[href], button, select")];
         const first = items[0];
         const last = items[items.length - 1];
         if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
@@ -66,16 +68,17 @@ export default function SiteHeader() {
     <div className={styles.topbar}><div className="container"><span>{t("Más de 25 años construyendo contigo")}</span><div><Link href="/contact"><MapPin size={13} /> {t("Ambato & Salcedo")}</Link><a href={company.phoneHref}><Phone size={12} /> {company.phone}</a></div></div></div>
     <div className={`container ${styles.navigation}`}>
       <Link href="/" className={styles.logo} aria-label={t("CHIMG, inicio")} onClick={() => setOpen(false)}><Image src={overlay ? "/logo-chimg-w.png" : "/logo-chimg.png"} alt={t("CHIMG Mega Ferretero Importadores")} width={199} height={66} preload /></Link>
-      <button className={styles.toggle} type="button" ref={toggleRef} aria-label={t(open ? "Cerrar menú" : "Abrir menú")} aria-expanded={open} aria-controls="main-navigation" onClick={() => { setMenuLoaded(true); setOpen(value => !value); }}><Menu className={styles.menuIcon} aria-hidden="true" /><X className={styles.closeIcon} aria-hidden="true" /></button>
+      <button className={styles.toggle} type="button" ref={toggleRef} aria-label={t("Abrir menú")} aria-expanded={open} aria-controls="main-navigation" tabIndex={open ? -1 : undefined} onClick={() => { setMenuLoaded(true); setOpen(true); }}><Menu aria-hidden="true" /></button>
       <nav ref={navRef} id="main-navigation" aria-label={t("Navegación principal")} className={`${styles.links} ${open ? styles.open : ""}`}>
+        <button ref={closeRef} className={styles.menuClose} type="button" aria-label={t("Cerrar menú")} onClick={() => { setOpen(false); toggleRef.current?.focus(); }}><X aria-hidden="true" /></button>
         {menuLoaded && <div className={styles.menuBackdrop} aria-hidden="true"><Image src={ambatoMenu} alt="" fill sizes="100vw" unoptimized /><Image src={salcedoMenu} alt="" fill sizes="100vw" unoptimized /><div /></div>}
         <div className={styles.menuBrand}><Image src="/logo-chimg-w.png" alt={t("CHIMG")} width={165} height={55} /></div>
         <Link href="/" aria-current={pathname === "/" ? "page" : undefined} onClick={() => setOpen(false)}>{t("Inicio")}</Link>
         <Link href="/about" aria-current={pathname === "/about" ? "page" : undefined} onClick={() => setOpen(false)}>{t("Nosotros")}</Link>
-        <Link href="/product-lines" aria-current={pathname === "/product-lines" ? "page" : pathname.startsWith("/product-lines/") ? "location" : undefined} onClick={() => setOpen(false)}>{t("Nuestras líneas")}</Link>
+        <Link href="/product-lines" aria-current={pathname === "/product-lines" ? "page" : pathname.startsWith("/product-lines/") ? "location" : undefined} onClick={() => setOpen(false)}>{t("Productos")}</Link>
         <Link href="/services" aria-current={pathname === "/services" ? "page" : undefined} onClick={() => setOpen(false)}>{t("Servicios")}</Link>
         <Link href="/contact" aria-current={pathname === "/contact" ? "page" : undefined} className={styles.contact} onClick={() => setOpen(false)}>{t("Contacto")} <span className={styles.contactArrow} aria-hidden="true"><ArrowUpRight size={17} /></span></Link>
-        <LanguageSelector /><div className={styles.menuFooter}><span>{t("AMBATO · SALCEDO")}</span><p>{t("Tu próximo proyecto")}<br />{t("empieza aquí.")}</p></div>
+        <div className={styles.menuLanguage}><LanguageSelector /></div><div className={styles.menuFooter}><span>{t("AMBATO · SALCEDO")}</span><p>{t("Tu próximo proyecto")}<br />{t("empieza aquí.")}</p></div>
       </nav>
     </div>
   </header>;

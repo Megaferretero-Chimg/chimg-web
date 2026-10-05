@@ -17,7 +17,7 @@ function photograph(image, width, height) {
   const context = buffer.getContext("2d");
   const ratio = Math.max(width / image.naturalWidth, height / image.naturalHeight);
   const [horizontal, vertical] = getComputedStyle(image).objectPosition.split(" ");
-  const fraction = value => value === "right" || value === "bottom" ? 1 : value === "left" || value === "top" ? 0 : (parseFloat(value) || 50) / 100;
+  const fraction = value => value === "right" || value === "bottom" ? 1 : value === "left" || value === "top" ? 0 : Number.isFinite(parseFloat(value)) ? parseFloat(value) / 100 : .5;
   const w = image.naturalWidth * ratio;
   const h = image.naturalHeight * ratio;
   context.drawImage(image, (width - w) * fraction(horizontal), (height - h) * fraction(vertical), w, h);

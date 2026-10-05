@@ -4,17 +4,32 @@ import { useLanguage } from "@/components/language-selector";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { getImageProps } from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, MapPin, Pause, Play } from "lucide-react";
-import mobile from "@/output/banners/chimg-mobile-v1.png";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import trainingDesktop from "@/output/banners/chimg-training-desktop-v3.webp";
+import trainingMobile from "@/output/banners/chimg-training-mobile-v3-raised.webp";
+import eventDesktop from "@/output/banners/chimg-event-desktop-v4.webp";
+import eventMobile from "@/output/banners/chimg-event-mobile-corrected.webp";
+import anniversaryDesktop from "@/output/banners/chimg-25-years-both-branches.webp";
+import anniversaryMobile from "@/output/banners/chimg-25-years-mobile.webp";
+import serviceDesktop from "@/public/imgs/sucursales/salcedo/cajas-botarga.webp";
+import serviceMobile from "@/output/banners/chimg-service-mobile-v2.webp";
+import showroomDesktop from "@/output/banners/chimg-showroom-desktop.webp";
+import showroomMobile from "@/output/banners/chimg-showroom-mobile.webp";
+import mobile from "@/output/banners/chimg-mobile-v1-uniform-raised.webp";
 import desktop from "@/output/banners/chimg-widescreen-v1.png";
 import salcedoDesktop from "@/output/banners/chimg-salcedo-desktop-v1.png";
-import salcedoMobile from "@/output/banners/chimg-salcedo-mobile-v1.png";
+import salcedoMobile from "@/output/banners/chimg-salcedo-mobile-v1-uniform-raised.webp";
 import styles from "./home-hero.module.scss";
 import DigitalTransition from "./digital-transition";
 
 const slides = [
-  { name: "Ambato", type: "MATRIZ", desktop, mobile },
-  { name: "Salcedo", type: "SUCURSAL", desktop: salcedoDesktop, mobile: salcedoMobile },
+  { name: "Ambato", label: "Matriz Ambato", type: "MATRIZ", desktop, mobile },
+  { name: "Salcedo", label: "Sucursal Salcedo", type: "SUCURSAL", desktop: salcedoDesktop, mobile: salcedoMobile },
+  { name: "Capacitaciones", label: "Capacitaciones CHIMG", desktop: trainingDesktop, mobile: trainingMobile, alt: "Capacitación de CHIMG con asistentes, expositor y mascota" },
+  { name: "Eventos", label: "Eventos CHIMG", desktop: eventDesktop, mobile: eventMobile, alt: "Stand de CHIMG con dos representantes y la mascota" },
+  { name: "Atención", label: "Atención al cliente", desktop: serviceDesktop, mobile: serviceMobile, alt: "La mascota de CHIMG atendiendo a un cliente en caja" },
+  { name: "Showrooms", label: "Showrooms CHIMG", desktop: showroomDesktop, mobile: showroomMobile, alt: "La mascota de CHIMG junto a las exhibiciones de grifería y acabados del showroom" },
+  { name: "25 años", label: "25 años de experiencia", desktop: anniversaryDesktop, mobile: anniversaryMobile, alt: "25 años de experiencia de CHIMG junto a las sucursales de Ambato y Salcedo" },
 ];
 
 function subscribeMotion(callback) {
@@ -34,8 +49,7 @@ function canAnimate() {
 export default function HomeHero({ children }) {
   const { t } = useLanguage();
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [loaded, setLoaded] = useState([false, false]);
+  const [loaded, setLoaded] = useState(() => slides.map(() => false));
   const imageRefs = useRef([]);
   const motionAllowed = useSyncExternalStore(subscribeMotion, canAnimate, () => false);
   const ready = loaded.every(Boolean);
@@ -53,27 +67,26 @@ export default function HomeHero({ children }) {
   }, []);
 
   useEffect(() => {
-    if (paused || !ready || !motionAllowed) return;
-    const timer = window.setInterval(() => {
+    if (!ready || !motionAllowed) return;
+    const timer = window.setTimeout(() => {
       setActive(current => (current + 1) % slides.length);
-    }, 8000);
-    return () => window.clearInterval(timer);
-  }, [paused, ready, motionAllowed]);
+    }, 6000);
+    return () => window.clearTimeout(timer);
+  }, [active, ready, motionAllowed]);
 
   function selectSlide(index) {
     setActive(index);
-    setPaused(true);
   }
 
   return (
     <section className={styles.hero} aria-labelledby="hero-title" aria-roledescription={t("carrusel")} data-active-branch={t(slides[active].name)}>
       {slides.map((slide, index) => {
-        const { props } = getImageProps({ src: slide.desktop, unoptimized: true, loading: "eager", sizes: "100vw", alt: t("Personaje de CHIMG frente a la sucursal de {name} al atardecer", { name: slide.name }) });
+        const { props } = getImageProps({ src: slide.desktop, unoptimized: true, loading: "eager", sizes: "100vw", alt: slide.alt || t("Personaje de CHIMG frente a la sucursal de {name} al atardecer", { name: slide.name }) });
         return (
           <div key={slide.name} className={`${styles.picture} ${active === index ? styles.visible : ""}`} aria-hidden={active !== index}>
             <picture>
             <source media="(max-width: 700px)" srcSet={slide.mobile.src} width={slide.mobile.width} height={slide.mobile.height} />
-            <img {...props} ref={element => { imageRefs.current[index] = element; }} alt={t(props.alt)} className={styles.image} loading="eager" fetchPriority={index === 0 ? "high" : "low"} onLoad={() => setLoaded(current => current[index] ? current : current.map((value, position) => position === index || value))} />
+            <img {...props} ref={element => { imageRefs.current[index] = element; }} alt={t(props.alt)} className={`${styles.image} ${slide.name === "Capacitaciones" || slide.name === "Eventos" ? styles.trainingImage : ""}`} loading="eager" fetchPriority={index === 0 ? "high" : "low"} onLoad={() => setLoaded(current => current[index] ? current : current.map((value, position) => position === index || value))} />
             </picture>
           </div>
         );
@@ -81,31 +94,22 @@ export default function HomeHero({ children }) {
       <div className={styles.shade} />
       <DigitalTransition scene={active} enabled={motionAllowed} imagesRef={imageRefs} />
       <div className={styles.content}>
-        <p className={styles.eyebrow}><span /> {t("CONSTRUIMOS CONTIGO, DESDE SIEMPRE.")}</p>
-        <h1 id="hero-title"><span className={styles.titleLine}><span>{t("Tú lo imaginas.")}</span></span><br /><span className={styles.titleLine}><span>{t("Juntos, lo")}</span></span>{" "}<br /><span className={styles.titleLine}><em>{t("hacemos.")}</em></span></h1>
+        <h1 id="hero-title"><span className={styles.titleLine}><span>{t("Tú lo imaginas.")}{" "}{t("Juntos, lo")}{" "}<em>{t("hacemos.")}</em></span></span></h1>
         <p className={styles.description}>{t("Todo para construir, renovar y dar vida")}<br className={styles.desktopBreak} /> {t("a tus espacios. Un aliado en cada paso.")}</p>
         <div className={styles.actions}>
-          <Link href="/product-lines" className={styles.primary}>{t("Explora nuestras líneas")} <span><ArrowUpRight size={20} /></span></Link>
-          <Link href="/contact" className={styles.secondary}>{t("Hablemos de tu proyecto")} <ArrowUpRight size={17} /></Link>
+          <Link href="/contact" className={styles.primary}>{t("Trabajemos juntos")} <span><ArrowUpRight size={20} /></span></Link>
         </div>
-        {children}
       </div>
-      <div className={styles.controls} role="group" aria-label={t("Seleccionar sucursal del banner")}>
-        <div className={styles.branchTabs} style={{ "--active-branch": active }}>
-          <span className={styles.selectionIndicator} aria-hidden="true" />
-          {slides.map((slide, index) => <button key={slide.name} type="button" disabled={!loaded[index]} aria-pressed={active === index} onClick={() => selectSlide(index)}><span />{t(slide.name)}</button>)}
+      <div className={styles.socialDock}>{children}</div>
+      <div className={styles.slideCaption}>
+        {slides.map((slide, index) => <span key={slide.name} className={active === index ? styles.captionActive : ""} aria-hidden={active !== index}>{t(slide.label)}</span>)}
+      </div>
+      <div className={styles.controls} role="group" aria-label="Navegar imágenes">
+        <button type="button" aria-label="Imagen anterior" onClick={() => selectSlide((active - 1 + slides.length) % slides.length)}><ChevronLeft size={18} /></button>
+        <div className={styles.slideDots}>
+          {slides.map((slide, index) => <button key={slide.name} type="button" disabled={!loaded[index]} aria-label={`Imagen ${index + 1}`} aria-pressed={active === index} onClick={() => selectSlide(index)}><span /></button>)}
         </div>
-        {motionAllowed && <button type="button" className={styles.playback} onClick={() => setPaused(value => !value)} aria-label={t(paused ? "Reanudar presentación" : "Pausar presentación")}>{paused ? <Play size={14} /> : <Pause size={14} />}</button>}
-      </div>
-      <div className={styles.bottom}>
-        <Link href="/about" className={styles.experience}><strong>25<span>+</span></strong><span>{t("Años de experiencia.")}<br />{t("Miles de ideas por construir.")}</span><ArrowUpRight size={18} /></Link>
-        <Link href="/contact" className={styles.location} aria-label={t("Visitar {name}", { name: slides[active].name })}>
-          <MapPin size={19} />
-          <span className={styles.locationLabels}>
-            {slides.map((slide, index) => <span key={slide.name} className={`${styles.locationLabel} ${active === index ? styles.locationLabelActive : ""}`} aria-hidden={active !== index}><small>{t(slide.type)} {t("· VEN A CONOCERNOS")}</small><span>{t(slide.name)}</span></span>)}
-          </span>
-          <ArrowUpRight size={19} />
-        </Link>
+        <button type="button" aria-label="Imagen siguiente" onClick={() => selectSlide((active + 1) % slides.length)}><ChevronRight size={18} /></button>
       </div>
     </section>
   );

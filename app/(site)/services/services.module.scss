@@ -1,0 +1,17 @@
+.intro {
+  background: var(--blue);
+  color: white;
+  padding: 155px 0 32px;
+  nav { display: flex; gap: 10px; font-size: 11px; color: #ffffffb3; }
+  h1 { margin: 16px 0 0; font-size: clamp(32px, 4vw, 48px); line-height: 1.1; }
+}
+.intro + section { padding-block: 32px 56px; }
+.serviceGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.delivery { grid-column: 1 / -1; order: 1; }
+.deliveryImage { display: block; width: 100%; max-width: 900px; height: auto; margin: 24px auto 0; border-radius: 12px; }
+@media (max-width: 800px) {
+  .serviceGrid { grid-template-columns: 1fr; }
+  .delivery { grid-column: auto; order: 0; }
+  .intro { margin: 8px; border-radius: 22px; padding: 125px 16px 24px; }
+  .intro + section { padding-block: 20px 40px; }
+}

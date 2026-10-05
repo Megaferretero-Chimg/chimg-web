@@ -8,6 +8,8 @@ import ProjectBanner from "@/components/project-banner";
 import branchStyles from "./branches.module.scss";
 
 import styles from "@/styles/corporate.module.scss";
+import { lines } from "@/lib/site";
+import pageStyles from "./about.module.scss";
 
 export async function generateMetadata() { const t = await getTranslator(); return { title: t("Nosotros"), description: t("Conoce CHIMG: más de 25 años acompañando proyectos de construcción y hogar desde Ambato y Salcedo.") }; }
 
@@ -18,14 +20,21 @@ export default async function Page() {
       <PageBreadcrumb label="Nosotros" />
       <section className={`container ${branchStyles.intro}`} id="about" aria-labelledby="about-title">
         <div className={styles.aboutCopy} data-reveal-group>
-          <p className="eyebrow">{t("SOMOS CHIMG")}</p><h2 className="section-title" id="about-title">{t("25 años de historia.")}<br />{t("Miles de ideas")}<br />{t("por construir.")}</h2>
+          <p className="eyebrow">{t("SOMOS CHIMG")}</p><h2 className="section-title" id="about-title">{t("25 años de experiencia.")}</h2>
         </div>
         <div className={styles.aboutCopy} data-reveal-group>
-          <p className={branchStyles.introText}>{t("Detrás de cada obra hay una idea. Detrás de cada hogar, una historia. En CHIMG llevamos más de 25 años siendo parte de ambas.")}</p>
-          <p>{t("Desde Ambato y Salcedo, reunimos soluciones para la construcción y el hogar en un solo lugar, con atención personalizada para ayudarte a elegir en cada paso.")}</p>
-          <div className={styles.aboutFacts}><div><strong>5</strong><span>{t("Líneas para tu proyecto")}</span></div><div><strong>2</strong><span>{t("Ciudades, cerca de ti")}</span></div><div><BadgeCheck size={28} strokeWidth={1.3} /><span>{t("Atención personalizada")}</span></div></div>
+          <p className={branchStyles.introText}>{t("Somos CHIMG Mega Ferretero Importadores. Acompañamos a constructores, ferreterías, profesionales independientes y familias con productos para sus obras, trabajos y hogares.")}</p>
+          <p>{t("Desde nuestra matriz en Ambato y nuestra sucursal en Salcedo, ofrecemos Hogar y Decoración, Herramienta Eléctrica, Maquinaria Industrial y Jardinería, junto con materiales de construcción, acabados y soluciones para tus instalaciones.")}</p>
+          <div className={styles.aboutFacts}><div><strong>4</strong><span>{t("Líneas principales")}</span></div><div><strong>2</strong><span>{t("Ciudades, cerca de ti")}</span></div><div><BadgeCheck size={28} strokeWidth={1.3} /><span>{t("Atención personalizada")}</span></div></div>
           <Link href="/contact" className="text-link">{t("Conoce dónde encontrarnos")} <ArrowUpRight size={17} /></Link>
         </div>
+      </section>
+      <section className={`container ${pageStyles.offering}`} aria-labelledby="offering-title">
+        <h2 id="offering-title">{t("Productos y servicios para tu proyecto")}</h2>
+        <div className={pageStyles.lines}>{lines.map(line => <Link key={line.slug} href={`/product-lines/${line.slug}`}>{t(line.name)} <ArrowUpRight size={17} /></Link>)}</div>
+        <p>{t("Te acompañamos con diseño de interiores, reparaciones, remodelaciones e instalaciones, entregas a nivel nacional y atención de garantías.")}</p>
+        <p>{t("También realizamos capacitaciones CHIMG y contamos con showrooms para que conozcas nuestros productos y encuentres ideas para tus espacios.")}</p>
+        <Link href="/services" className="text-link">{t("Conoce nuestros servicios")} <ArrowUpRight size={17} /></Link>
       </section>
       <section className={`container ${branchStyles.section}`} aria-labelledby="branches-title">
         <div className={branchStyles.heading} data-reveal>

@@ -18,3 +18,10 @@
 @media (hover: hover) { .channel:hover { transform: translateY(-3px); border-color: #c8d2e5; box-shadow: 0 16px 40px rgb(var(--navy-rgb) / 0.0431); > svg { transform: translate(2px, -2px); } } .mapLink:hover svg { transform: translate(2px, -2px); } }
 @media (max-width: 1000px) { .contact { gap: 35px; } .channel { padding: 18px; gap: 12px; } .icon { width: 42px; height: 42px; } }
 @media (max-width: 800px) { .contact { grid-template-columns: 1fr; padding-block: 50px; gap: 36px; } .branchGrid { grid-template-columns: 1fr; } .sectionHeading { align-items: flex-start; flex-direction: column; gap: 10px; } .branchBody { padding: 24px; } .locations { padding-bottom: 55px; } }
+
+.compactHeader { background: var(--blue); color: white; padding: 150px 0 28px; h1 { font-size: clamp(32px, 4vw, 48px); margin: 0; } }
+.contact { padding-block: 32px 48px; gap: 40px; }
+.intro { padding-top: 0; }
+.whatsappIcon { width: 26px; height: 26px; background: currentColor; mask: url('/icons/whastapp.svg') center / contain no-repeat; }
+.quickLocations { display: grid; gap: 12px; margin-top: 20px; a { display: flex; align-items: center; gap: 12px; padding: 18px; border: 1px solid var(--line); border-radius: 16px; color: var(--blue); } a > svg { flex-shrink: 0; } a > svg:last-child { margin-left: auto; } h3 { margin: 0 0 6px; font-size: 16px; } p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; } }
+@media (max-width: 800px) { .compactHeader { margin: 8px; border-radius: 22px; padding: 125px 24px 24px; } .contact { padding-block: 20px 36px; gap: 24px; } }

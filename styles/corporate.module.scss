@@ -11,11 +11,11 @@
 .heroTrust { display: flex; align-items: center; gap: 9px; margin-top: 34px; color: #d9dfeb; font-size: 10px; svg { color: var(--yellow); } }
 .heroCaption { position: absolute; right: 0; bottom: 52px; border-left: 2px solid var(--yellow); padding: 6px 0 6px 17px; text-shadow: 0 1px 5px #0007; > span { font-size: 8px; letter-spacing: .17em; } > div { display: flex; align-items: center; gap: 38px; font-size: 15px; margin-top: 8px; } }
 .heroScroll { position: absolute; top: 34px; right: 0; border: 1px solid #ffffff66; border-radius: 50%; padding: 10px; display: inline-flex; }
-.lineNav { border-bottom: 1px solid var(--line); background: white; > div { display: grid; grid-template-columns: repeat(5, 1fr); } a { display: flex; align-items: center; justify-content: center; gap: 14px; min-height: 84px; font-size: 13px; font-weight: 600; position: relative; color: var(--blue); } a + a::before { content: ""; position: absolute; left: 0; height: 26px; width: 1px; background: var(--line); } a:hover { background: var(--paper); } }
+.lineNav { border-bottom: 1px solid var(--line); background: white; > div { display: grid; grid-template-columns: repeat(4, 1fr); } a { display: flex; align-items: center; justify-content: center; gap: 14px; min-height: 84px; font-size: 13px; font-weight: 600; position: relative; color: var(--blue); } a + a::before { content: ""; position: absolute; left: 0; height: 26px; width: 1px; background: var(--line); } a:hover { background: var(--paper); } }
 .lineNavArrow { color: #9da2b0; margin-left: 8px; }
 .linesSection { padding: 85px 0 28px; background: var(--paper); }
 .sectionHeading { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; margin-bottom: 38px; > p { font-size: 13px; color: var(--muted); line-height: 1.8; margin: 0 0 2px; max-width: 390px; } }
-.lineGrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+.lineGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .lineCard { min-width: 0; h3 { font-size: 19px; font-weight: 600; letter-spacing: -.03em; margin: 16px 0 5px; } > p { font-size: 11px; color: var(--muted); margin: 0; } &:hover img { transform: scale(1.045); } &:hover .lineCircle { background: var(--yellow); color: var(--navy); } }
 .lineImage { position: relative; aspect-ratio: .79; overflow: hidden; border-radius: 4px; background: #d6d7d1; img { object-fit: cover; transition: transform .5s; } &::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgb(var(--navy-rgb) / 0.302), transparent 40%); pointer-events: none; } }
 .lineNumber { position: absolute; top: 13px; left: 14px; color: white; background: rgb(var(--navy-rgb) / 0.4); font-size: 10px; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 50%; }
@@ -137,3 +137,6 @@
 .lineImage { border-radius: 16px; }
 .projectBanner { margin: 14px; border-radius: 24px; background: linear-gradient(120deg, var(--navy), var(--blue-glow)); }
 @media (max-width: 700px) { .projectBanner { margin: 8px; border-radius: 20px; } .service { padding: 24px; } }
+
+// The home hero owns its entrance sequence; avoid a second animation on its parent.
+.homePage { animation: none; }
