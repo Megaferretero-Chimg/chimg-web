@@ -60,6 +60,12 @@ Ejemplo de canal opcional con enlace directo:
 
 Las imágenes se guardan en `public/business-cards/<slug>/` y se referencian como `/business-cards/<slug>/foto.jpg` o `/business-cards/<slug>/wechat.png`. Sin fotografía se muestran iniciales. La tarjeta de Michelle usa la fotografía proporcionada y mejorada en `public/business-cards/michelle-chiluisa/portrait-enhanced-v1.png`. El enlace de WeChat se decodificó del QR individual proporcionado por el titular; no se ha recreado el QR. WhatsApp usa el teléfono mostrado en la tarjeta como contacto directo, sin afirmar que se haya decodificado su QR.
 
+## Video de presentación
+
+La ruta `/video` muestra únicamente el logo de CHIMG y el video institucional, sin la cabecera ni el pie del sitio. El reproductor nativo incluye reproducción, pausa, volumen, avance y pantalla completa, y se adapta a móviles y escritorio. La reproducción empieza cuando el visitante la solicita.
+
+El video está alojado en Cloudinary, en la carpeta `chimg/presentacion`, con el identificador `chimg/presentacion/video-chimg-c69e0ba0`. Se subió una copia optimizada en H.264/AAC (1920 × 1080, 66 segundos, 50,6 MB) porque la cuenta limita cada video a 100 MB. El original permanece intacto. La URL pública se define en `app/video/page.js`; las credenciales de Cloudinary no se incluyen en el código ni son necesarias para reproducirlo. La portada local está en `public/videos/chimg-poster.jpg`.
+
 ## Evolución a tienda
 
 Las líneas tienen identificadores estables (`slug`), rutas propias y datos separados de la presentación. La siguiente etapa puede añadir productos asociados a cada línea (SKU, descripción, imágenes, especificaciones y variantes), conservando esta navegación.
