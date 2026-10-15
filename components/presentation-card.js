@@ -6,7 +6,7 @@ import LanguageSelector, { useLanguage } from "@/components/language-selector";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Check, Copy, Download, Globe, Mail, MapPin, MessageCircle, Phone, QrCode, UserRound, UserRoundPlus, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Copy, Download, Globe, Mail, MapPin, MessageCircle, Phone, QrCode, Share2, UserRound, UserRoundPlus, X } from "lucide-react";
 import { getCardInitials, getCardLinks } from "@/lib/presentation-cards";
 import ambato from "@/output/banners/chimg-widescreen-v1.png";
 import styles from "./presentation-card.module.scss";
@@ -31,6 +31,9 @@ export default function PresentationCard({ card }) {
   const [copyStatus, setCopyStatus] = useState("");
   const [wechatQr, setWechatQr] = useState(null);
   const qrDialog = useRef(null);
+  const [qrShare, setQrShare] = useState(null);
+  const [qrShareBusy, setQrShareBusy] = useState(false);
+  const [qrShareError, setQrShareError] = useState("");
   const [page, setPage] = useState(0);
   const [dragProgress, setDragProgress] = useState(null);
   const mobile = useSyncExternalStore(subscribeMobile, isMobileViewport, serverViewport);
@@ -52,6 +55,37 @@ export default function PresentationCard({ card }) {
       document.body.style.overflow = previousOverflow;
     };
   }, [wechatQr]);
+
+  useEffect(() => {
+    if (!wechatQr || !navigator.share || !navigator.canShare) return;
+    const controller = new AbortController();
+    async function prepareImage() {
+      try {
+        const response = await fetch(wechatQr.qrImage, { signal: controller.signal });
+        if (!response.ok) return;
+        const blob = await response.blob();
+        const file = new File([blob], `${card.slug}-wechat.png`, { type: "image/png" });
+        if (!controller.signal.aborted && navigator.canShare({ files: [file] })) {
+          setQrShare({ src: wechatQr.qrImage, file });
+        }
+      } catch { /* The original image remains available if sharing is unsupported. */ }
+    }
+    prepareImage();
+    return () => controller.abort();
+  }, [wechatQr, card.slug]);
+
+  async function shareQrImage() {
+    if (!qrShare || qrShare.src !== wechatQr?.qrImage || qrShareBusy) return;
+    setQrShareBusy(true);
+    setQrShareError("");
+    try {
+      await navigator.share({ files: [qrShare.file] });
+    } catch (error) {
+      if (error.name !== "AbortError") setQrShareError("No se pudo compartir. Abre la imagen para guardarla desde el navegador.");
+    } finally {
+      setQrShareBusy(false);
+    }
+  }
 
   function showCopyStatus(message) {
     clearTimeout(copyTimer.current);
@@ -147,7 +181,7 @@ export default function PresentationCard({ card }) {
               const ActionIcon = showWechatQr ? QrCode : link.download ? Download : ArrowUpRight;
               const content = <><span className={styles.icon}>{link.type === "whatsapp" ? <span className={styles.whatsappIcon} aria-hidden="true" /> : <Icon size={22} aria-hidden="true" />}</span><span className={styles.linkText}><strong>{t(link.label)}</strong>{showWechatQr ? <span>{t("Ver código QR para agregar contacto")}</span> : link.value && <span>{t(link.value)}</span>}</span>{link.href && <ActionIcon className={styles.arrow} size={20} aria-hidden="true" />}</>;
               return <li key={link.id} style={{ "--delay": `${index * 90 + 150}ms` }}>
-                {showWechatQr ? <button type="button" className={`${styles.channel} ${styles.wechatButton}`} aria-haspopup="dialog" onClick={() => setWechatQr(link)}>{content}</button> : link.href ? <a className={`${styles.channel} ${primary ? styles.primary : ""}`} href={link.href} download={link.download} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>{content}</a> : <div className={styles.channel}>{content}</div>}
+                {showWechatQr ? <button type="button" className={`${styles.channel} ${styles.wechatButton}`} aria-haspopup="dialog" onClick={() => { setQrShareError(""); setWechatQr(link); }}>{content}</button> : link.href ? <a className={`${styles.channel} ${primary ? styles.primary : ""}`} href={link.href} download={link.download} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>{content}</a> : <div className={styles.channel}>{content}</div>}
               </li>;
             })}
           </ul>
@@ -175,7 +209,10 @@ export default function PresentationCard({ card }) {
       <p id="wechat-qr-instructions" className={styles.qrInstructions}>{t("Abre WeChat y escanea este QR. Si estás en el mismo teléfono, guarda la imagen y selecciónala desde el escáner de WeChat.")}</p>
       {wechatQr && <>
         <Image className={styles.qrImage} src={wechatQr.qrImage} alt={t("Código QR de WeChat de {name}", { name: card.name })} width={600} height={600} unoptimized />
-        <a className={styles.qrDownload} href={wechatQr.qrImage} download={`${card.slug}-wechat.png`}><Download size={18} aria-hidden="true" />{t("Guardar código QR")}</a>
+        {qrShare?.src === wechatQr.qrImage && <button type="button" className={styles.qrDownload} disabled={qrShareBusy} onClick={shareQrImage}><Share2 size={18} aria-hidden="true" />{t("Compartir imagen")}</button>}
+        <p className={styles.qrSaveHelp}>{t("Para guardarla en Fotos o Galería, usa Compartir imagen y elige la opción de guardar si aparece. También puedes mantener pulsado el QR o abrir la imagen para ver las opciones del navegador.")}</p>
+        <a className={styles.qrOpenImage} href={wechatQr.qrImage} target="_blank" rel="noopener noreferrer">{t("Abrir imagen para guardar")}</a>
+        <p className={styles.qrSaveHelp} role="status">{t(qrShareError)}</p>
       </>}
     </dialog>
     <div className={styles.noticeBar} data-visible={Boolean(copyStatus)} role="status" aria-atomic="true">{t(copyStatus)}</div>

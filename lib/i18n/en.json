@@ -464,5 +464,9 @@
   "Ver código QR para agregar contacto": "View QR code to add contact",
   "Abre WeChat y escanea este QR. Si estás en el mismo teléfono, guarda la imagen y selecciónala desde el escáner de WeChat.": "Open WeChat and scan this QR code. On the same phone, save the image and select it from the WeChat scanner.",
   "Código QR de WeChat de {name}": "WeChat QR code for {name}",
-  "Guardar código QR": "Save QR code"
+  "Guardar código QR": "Save QR code",
+  "Compartir imagen": "Share image",
+  "Abrir imagen para guardar": "Open image to save",
+  "Para guardarla en Fotos o Galería, usa Compartir imagen y elige la opción de guardar si aparece. También puedes mantener pulsado el QR o abrir la imagen para ver las opciones del navegador.": "To save it to Photos or Gallery, use Share image and choose the save option if available. You can also press and hold the QR code or open the image to see your browser’s options.",
+  "No se pudo compartir. Abre la imagen para guardarla desde el navegador.": "Could not share. Open the image to save it from your browser."
 }

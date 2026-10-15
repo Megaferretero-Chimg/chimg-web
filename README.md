@@ -55,7 +55,7 @@ Cada entrada de `links` lleva `id` único dentro de la tarjeta, `type`, `label`,
 Ejemplo de canal opcional con enlace directo:
 
 ```js
-{ id: "wechat", type: "wechat", label: "We Chat", href: "https://u.wechat.com/kM4XCsjqok8s8JkjOIqzoJs?s=2" }
+{ id: "wechat", type: "wechat", label: "We Chat", href: "https://u.wechat.com/kDgKMx8qk5V0wvY5VeUx38I?s=2" }
 ```
 
 Las imágenes se guardan en `public/business-cards/<slug>/` y se referencian como `/business-cards/<slug>/foto.jpg` o `/business-cards/<slug>/wechat.png`. Sin fotografía se muestran iniciales. La tarjeta de Michelle usa la fotografía proporcionada y mejorada en `public/business-cards/michelle-chiluisa/portrait-enhanced-v1.png`. El enlace de WeChat se decodificó del QR individual proporcionado por el titular; no se ha recreado el QR. WhatsApp usa el teléfono mostrado en la tarjeta como contacto directo, sin afirmar que se haya decodificado su QR.
@@ -99,3 +99,9 @@ Verificación con el servidor local activo: `node --test --test-isolation=none t
 
 
 El botón de WeChat abre un modal con el QR, sin desplazar el contenido de la tarjeta, para escanearlo desde WeChat o guardar la imagen y seleccionarla desde su escáner. No redirige al navegador a `u.wechat.com`, porque ese destino no abrió el contacto en las pruebas del usuario. `qrImage` apunta a un PNG local. El QR de Ashley y su enlace se obtuvieron de la imagen proporcionada; el PNG de César Chiluisa se generó a partir de su enlace previamente registrado. Los cinco PNG se verificaron decodificándolos y comparándolos con su `href`.
+
+El QR de Michelle se actualizó con la nueva imagen original proporcionada, conservada en `public/business-cards/michelle-chiluisa/wechat-qr-v2.png`. Su enlace se decodificó nuevamente para que coincida con esa imagen.
+
+El QR de César A. Chiluisa también usa la nueva imagen original en `public/business-cards/cesar-a-chiluisa/wechat-qr-v2.png`, con su enlace actualizado a partir de la decodificación del QR.
+
+El modal prepara el PNG al abrirse y ofrece compartir el archivo mediante Web Share cuando el navegador lo admite. La acción de compartir se ejecuta directamente al pulsar el botón para conservar la activación del usuario. Se puede abrir la imagen original sin descarga forzada como alternativa. La web no garantiza guardar directamente en Fotos/Galería: las opciones disponibles dependen del sistema y del navegador.
