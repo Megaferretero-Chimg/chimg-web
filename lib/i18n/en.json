@@ -460,5 +460,9 @@
   "Categoría siguiente": "Next category",
   "Conoce nuestra sucursal en Salcedo y recorre sus exhibiciones.": "Visit our Salcedo branch and explore its displays.",
   "Recorre la sucursal": "Explore the branch",
-  "Muévete entre nuestras categorías y descubre lo que te espera en Salcedo.": "Browse our categories and discover what awaits you in Salcedo."
+  "Muévete entre nuestras categorías y descubre lo que te espera en Salcedo.": "Browse our categories and discover what awaits you in Salcedo.",
+  "¿No abre WeChat? Ver código QR": "WeChat not opening? View QR code",
+  "Abre WeChat y escanea este QR. Si estás en el mismo teléfono, guarda la imagen y selecciónala desde el escáner de WeChat.": "Open WeChat and scan this QR code. On the same phone, save the image and select it from the WeChat scanner.",
+  "Código QR de WeChat de {name}": "WeChat QR code for {name}",
+  "Guardar código QR": "Save QR code"
 }

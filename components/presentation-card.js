@@ -127,12 +127,18 @@ export default function PresentationCard({ card }) {
           <ul className={styles.links}>
             {links.map((link, index) => {
               const Icon = icons[link.type] ?? Globe;
-              const external = /^https?:\/\//.test(link.href ?? "");
+              const external = link.type !== "wechat" && /^https?:\/\//.test(link.href ?? "");
               const primary = link.type === "whatsapp";
               const ActionIcon = link.download ? Download : ArrowUpRight;
               const content = <><span className={styles.icon}>{link.type === "whatsapp" ? <span className={styles.whatsappIcon} aria-hidden="true" /> : <Icon size={22} aria-hidden="true" />}</span><span className={styles.linkText}><strong>{t(link.label)}</strong>{link.value && <span>{t(link.value)}</span>}</span>{link.href && <ActionIcon className={styles.arrow} size={20} aria-hidden="true" />}</>;
               return <li key={link.id} style={{ "--delay": `${index * 90 + 150}ms` }}>
                 {link.href ? <a className={`${styles.channel} ${primary ? styles.primary : ""}`} href={link.href} download={link.download} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>{content}</a> : <div className={styles.channel}>{content}</div>}
+                {link.type === "wechat" && link.qrImage && <details className={styles.wechatHelp}>
+                  <summary>{t("¿No abre WeChat? Ver código QR")}</summary>
+                  <p>{t("Abre WeChat y escanea este QR. Si estás en el mismo teléfono, guarda la imagen y selecciónala desde el escáner de WeChat.")}</p>
+                  <Image src={link.qrImage} alt={t("Código QR de WeChat de {name}", { name: card.name })} width={600} height={600} unoptimized />
+                  <a href={link.qrImage} download={`${card.slug}-wechat.png`}>{t("Guardar código QR")}</a>
+                </details>}
               </li>;
             })}
           </ul>
