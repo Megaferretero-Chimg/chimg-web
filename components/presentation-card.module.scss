@@ -326,14 +326,31 @@
   .portrait { width: 125px; height: 150px; }
 }
 
-.wechatHelp {
-  margin-top: 8px;
-  color: #e4eaf6;
-  font-size: 12px;
-  line-height: 1.6;
-  summary { cursor: pointer; padding: 8px 4px; }
-  summary:focus-visible, a:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
-  p { margin: 8px 0 12px; }
-  img { display: block; width: min(100%, 320px); height: auto; padding: 20px; background: #fff; border-radius: 8px; }
-  a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; }
+.wechatButton { width: 100%; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.wechatButton:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
+@media (hover: hover) { .wechatButton:hover { border-color: #f7e72799; background: #ffffff0d; } }
+.qrDialog {
+  position: fixed;
+  inset: 0;
+  box-sizing: border-box;
+  width: min(440px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid #ffffff26;
+  border-radius: 24px;
+  background: #10233f;
+  color: #fff;
+  box-shadow: 0 24px 80px #0008;
+  &::backdrop { background: #061225b8; backdrop-filter: blur(6px); }
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; }
 }
+.qrHeader { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.qrHeader h2 { margin: 0; font-size: 24px; }
+.qrHeader p { margin: 6px 0 0; color: #c0cce3; font-size: 14px; }
+.qrClose { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border: 1px solid #ffffff26; border-radius: 50%; color: #fff; background: #ffffff0a; cursor: pointer; }
+.qrInstructions { font-size: 13px; line-height: 1.6; color: #d3dbee; margin: 18px 0; }
+.qrImage { box-sizing: border-box; display: block; width: min(100%, 320px); height: auto; padding: 16px; margin: 0 auto; background: #fff; border-radius: 12px; }
+.qrDownload { display: flex; justify-content: center; align-items: center; gap: 10px; min-height: 48px; margin-top: 20px; padding: 10px 16px; border-radius: 12px; background: var(--yellow); color: #10233f; font-size: 14px; font-weight: 600; }

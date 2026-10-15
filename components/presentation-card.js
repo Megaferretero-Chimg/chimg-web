@@ -6,7 +6,7 @@ import LanguageSelector, { useLanguage } from "@/components/language-selector";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Check, Copy, Download, Globe, Mail, MapPin, MessageCircle, Phone, UserRound, UserRoundPlus } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Copy, Download, Globe, Mail, MapPin, MessageCircle, Phone, QrCode, UserRound, UserRoundPlus, X } from "lucide-react";
 import { getCardInitials, getCardLinks } from "@/lib/presentation-cards";
 import ambato from "@/output/banners/chimg-widescreen-v1.png";
 import styles from "./presentation-card.module.scss";
@@ -29,6 +29,8 @@ export default function PresentationCard({ card }) {
     download: `${card.slug}.vcf`,
   }, ...getCardLinks(card)];
   const [copyStatus, setCopyStatus] = useState("");
+  const [wechatQr, setWechatQr] = useState(null);
+  const qrDialog = useRef(null);
   const [page, setPage] = useState(0);
   const [dragProgress, setDragProgress] = useState(null);
   const mobile = useSyncExternalStore(subscribeMobile, isMobileViewport, serverViewport);
@@ -38,6 +40,18 @@ export default function PresentationCard({ card }) {
   const copyTimer = useRef(null);
 
   useEffect(() => () => clearTimeout(copyTimer.current), []);
+
+  useEffect(() => {
+    if (!wechatQr) return;
+    const dialog = qrDialog.current;
+    const previousOverflow = document.body.style.overflow;
+    dialog.showModal();
+    document.body.style.overflow = "hidden";
+    return () => {
+      dialog.close();
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [wechatQr]);
 
   function showCopyStatus(message) {
     clearTimeout(copyTimer.current);
@@ -129,16 +143,11 @@ export default function PresentationCard({ card }) {
               const Icon = icons[link.type] ?? Globe;
               const external = link.type !== "wechat" && /^https?:\/\//.test(link.href ?? "");
               const primary = link.type === "whatsapp";
-              const ActionIcon = link.download ? Download : ArrowUpRight;
-              const content = <><span className={styles.icon}>{link.type === "whatsapp" ? <span className={styles.whatsappIcon} aria-hidden="true" /> : <Icon size={22} aria-hidden="true" />}</span><span className={styles.linkText}><strong>{t(link.label)}</strong>{link.value && <span>{t(link.value)}</span>}</span>{link.href && <ActionIcon className={styles.arrow} size={20} aria-hidden="true" />}</>;
+              const showWechatQr = link.type === "wechat" && link.qrImage;
+              const ActionIcon = showWechatQr ? QrCode : link.download ? Download : ArrowUpRight;
+              const content = <><span className={styles.icon}>{link.type === "whatsapp" ? <span className={styles.whatsappIcon} aria-hidden="true" /> : <Icon size={22} aria-hidden="true" />}</span><span className={styles.linkText}><strong>{t(link.label)}</strong>{showWechatQr ? <span>{t("Ver código QR para agregar contacto")}</span> : link.value && <span>{t(link.value)}</span>}</span>{link.href && <ActionIcon className={styles.arrow} size={20} aria-hidden="true" />}</>;
               return <li key={link.id} style={{ "--delay": `${index * 90 + 150}ms` }}>
-                {link.href ? <a className={`${styles.channel} ${primary ? styles.primary : ""}`} href={link.href} download={link.download} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>{content}</a> : <div className={styles.channel}>{content}</div>}
-                {link.type === "wechat" && link.qrImage && <details className={styles.wechatHelp}>
-                  <summary>{t("¿No abre WeChat? Ver código QR")}</summary>
-                  <p>{t("Abre WeChat y escanea este QR. Si estás en el mismo teléfono, guarda la imagen y selecciónala desde el escáner de WeChat.")}</p>
-                  <Image src={link.qrImage} alt={t("Código QR de WeChat de {name}", { name: card.name })} width={600} height={600} unoptimized />
-                  <a href={link.qrImage} download={`${card.slug}-wechat.png`}>{t("Guardar código QR")}</a>
-                </details>}
+                {showWechatQr ? <button type="button" className={`${styles.channel} ${styles.wechatButton}`} aria-haspopup="dialog" onClick={() => setWechatQr(link)}>{content}</button> : link.href ? <a className={`${styles.channel} ${primary ? styles.primary : ""}`} href={link.href} download={link.download} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>{content}</a> : <div className={styles.channel}>{content}</div>}
               </li>;
             })}
           </ul>
@@ -154,6 +163,21 @@ export default function PresentationCard({ card }) {
       </div>
       <div className={styles.bottom}><span>{t("CONSTRUIMOS CONTIGO.")}</span><span>{t("AMBATO · SALCEDO")} <span aria-hidden="true">↗</span> {t("ECUADOR")}</span></div>
     </div>
+    <dialog ref={qrDialog} className={styles.qrDialog} aria-labelledby="wechat-qr-title" aria-describedby="wechat-qr-instructions" onClose={() => setWechatQr(null)} onClick={event => {
+      if (event.target !== event.currentTarget) return;
+      const bounds = event.currentTarget.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) event.currentTarget.close();
+    }}>
+      <div className={styles.qrHeader}>
+        <div><h2 id="wechat-qr-title">WeChat</h2><p>{card.name}</p></div>
+        <button type="button" className={styles.qrClose} aria-label={t("Cerrar")} onClick={() => qrDialog.current.close()}><X size={22} aria-hidden="true" /></button>
+      </div>
+      <p id="wechat-qr-instructions" className={styles.qrInstructions}>{t("Abre WeChat y escanea este QR. Si estás en el mismo teléfono, guarda la imagen y selecciónala desde el escáner de WeChat.")}</p>
+      {wechatQr && <>
+        <Image className={styles.qrImage} src={wechatQr.qrImage} alt={t("Código QR de WeChat de {name}", { name: card.name })} width={600} height={600} unoptimized />
+        <a className={styles.qrDownload} href={wechatQr.qrImage} download={`${card.slug}-wechat.png`}><Download size={18} aria-hidden="true" />{t("Guardar código QR")}</a>
+      </>}
+    </dialog>
     <div className={styles.noticeBar} data-visible={Boolean(copyStatus)} role="status" aria-atomic="true">{t(copyStatus)}</div>
   </article>;
 }
