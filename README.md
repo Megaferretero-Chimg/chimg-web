@@ -105,3 +105,7 @@ El QR de Michelle se actualizó con la nueva imagen original proporcionada, cons
 El QR de César A. Chiluisa también usa la nueva imagen original en `public/business-cards/cesar-a-chiluisa/wechat-qr-v2.png`, con su enlace actualizado a partir de la decodificación del QR.
 
 El modal prepara el PNG al abrirse y ofrece compartir el archivo mediante Web Share cuando el navegador lo admite. La acción de compartir se ejecuta directamente al pulsar el botón para conservar la activación del usuario. Se puede abrir la imagen original sin descarga forzada como alternativa. La web no garantiza guardar directamente en Fotos/Galería: las opciones disponibles dependen del sistema y del navegador.
+
+El QR de Rosa Rodríguez usa la nueva imagen original en `public/business-cards/rosa-rodriguez/wechat-qr-v2.png`, con el enlace actualizado a partir de su decodificación.
+
+El QR de César Chiluisa usa la nueva imagen original en `public/business-cards/cesar-chiluisa/wechat-qr-v2.png`, reemplazando en el modal el PNG generado anteriormente. Su enlace se actualizó a partir de la decodificación de la nueva imagen.
