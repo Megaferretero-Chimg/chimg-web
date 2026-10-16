@@ -3,7 +3,7 @@ import { getTranslator } from "@/lib/i18n/server";
 import BranchFacades from "@/components/branch-facades";
 import Link from "next/link";
 import Image from "next/image";
-import anniversary from "@/output/banners/chimg-25-years-both-branches.webp";
+import anniversary from "@/public/banners/chimg-25-years-both-branches.webp";
 import { ArrowUpRight, MapPin } from "lucide-react";
 
 import PageBreadcrumb from "@/components/page-breadcrumb";

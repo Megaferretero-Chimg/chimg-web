@@ -468,5 +468,16 @@
   "Compartir imagen": "Share image",
   "Abrir imagen para guardar": "Open image to save",
   "Para guardarla en Fotos o Galería, usa Compartir imagen y elige la opción de guardar si aparece. También puedes mantener pulsado el QR o abrir la imagen para ver las opciones del navegador.": "To save it to Photos or Gallery, use Share image and choose the save option if available. You can also press and hold the QR code or open the image to see your browser’s options.",
-  "No se pudo compartir. Abre la imagen para guardarla desde el navegador.": "Could not share. Open the image to save it from your browser."
+  "No se pudo compartir. Abre la imagen para guardarla desde el navegador.": "Could not share. Open the image to save it from your browser.",
+  "Auxiliar Pago a Proveedores": "Accounts Payable Assistant",
+  "Auxiliar de Ingreso de Compras": "Purchase Entry Assistant",
+  "Contadora General": "Head Accountant",
+  "Auxiliar Financiera": "Finance Assistant",
+  "Coordinador de Compras Nacionales": "Domestic Purchasing Coordinator",
+  "Auxiliar de Cartera Crédito y Cobranza": "Credit and Collections Assistant",
+  "Jefe de Bodega": "Warehouse Manager",
+  "Auxiliar de Talento Humano": "Human Resources Assistant",
+  "Asesor de Ventas": "Sales Advisor",
+  "Jefe de Sucursal": "Branch Manager",
+  "Coordinador de Logística": "Logistics Coordinator"
 }

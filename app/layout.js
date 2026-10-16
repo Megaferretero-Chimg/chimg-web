@@ -5,6 +5,7 @@ import { LanguageProvider } from "@/components/language-selector";
 export async function generateMetadata() {
   const t = await getTranslator();
   return {
+  icons: { icon: { url: "/icon.svg", type: "image/svg+xml", sizes: "any" } },
   title: {
     default: t("CHIMG | Construimos contigo, transformamos tus espacios"),
     template: "%s | CHIMG",

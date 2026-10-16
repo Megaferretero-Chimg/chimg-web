@@ -27,7 +27,7 @@ Abre http://localhost:3000.
 - `app/globals.scss`: variables de marca y estilos base.
 - `components/`: cabecera responsive, pie, iconos y formulario de consulta.
 - `lib/site.js`: fuente única de datos de empresa, locales, líneas y enlaces de WhatsApp.
-- `public/`: recursos originales proporcionados por el cliente; no modificados.
+- `public/`: todos los recursos gráficos de la web. `banners/` contiene las imágenes del carrusel y fondos; `imgs/`, las fotografías por categoría y sucursal; `business-cards/`, los retratos del equipo; `icons/`, los iconos sociales y la bandera; `videos/`, la portada del video. Los logos y el favicon (`icon.svg`) están en la raíz de `public/`.
 
 Los estilos corporativos compartidos están en `styles/corporate.module.scss`; los componentes y las páginas de detalle usan sus propios módulos SCSS. Cada página principal tiene URL, título y descripción propios. La navegación utiliza rutas reales, con indicador de página actual. Se usan fuentes del sistema, sin descargas externas.
 
@@ -76,7 +76,7 @@ Carrito, stock, precios, pagos, cuentas y gestión de pedidos requieren una impl
 
 `components/home-hero.js` alterna Ambato y Salcedo cada 8 segundos. Durante 950 ms, un frente diagonal avanza de abajo a la izquierda hacia arriba a la derecha: deforma la fotografía en partículas y reconstruye la siguiente imagen mediante Canvas, con un mosaico fotográfico opaco que cubre los espacios entre fragmentos. El texto y los botones permanecen fijos. Los controles permiten seleccionar la sucursal y pausar o reanudar el ciclo; elegir manualmente pausa la reproducción.
 
-El efecto decorativo se dibuja en Canvas solo durante el cambio, con menos partículas en móvil y sin interferir con los clics. La reproducción espera a que ambas imágenes estén cargadas, se detiene con la pestaña oculta y respeta `prefers-reduced-motion`. Cada sucursal tiene una composición vertical para móvil. Los PNG originales y los prompts de ImageGen se conservan en `output/banners/`, sin modificar `public/`.
+El efecto decorativo se dibuja en Canvas solo durante el cambio, con menos partículas en móvil y sin interferir con los clics. La reproducción espera a que ambas imágenes estén cargadas, se detiene con la pestaña oculta y respeta `prefers-reduced-motion`. Cada sucursal tiene una composición vertical para móvil. Las imágenes utilizadas se conservan en `public/banners/` y se importan desde allí para mantener sus dimensiones y la optimización de Next.js. Las capturas de revisión y las versiones descartadas no forman parte del proyecto.
 
 
 Las tarjetas individuales usan una vista independiente de pantalla completa, sin cabecera, pie ni navegación corporativa. El botón «Visita CHIMG» lleva a la portada. En móvil se presenta una sola tarjeta con dos páginas, presentación y contacto, ajustada a la altura visible del dispositivo. El directorio permanece dentro del layout corporativo. Las URLs no cambian al organizar las páginas en el grupo `(site)`.
@@ -95,7 +95,7 @@ El selector ES/EN está en la navegación (dentro del menú en móvil) y en la c
 
 Incluye metadatos, etiquetas accesibles, consultas preparadas de WhatsApp y el cargo del archivo vCard. Los datos propios (nombres, correos, teléfonos y direcciones) se conservan. La selección por petición requiere el servidor Next.js; no es una exportación HTML estática.
 
-Verificación con el servidor local activo: `node --test --test-isolation=none tests/i18n.test.mjs`. Puede usarse `TEST_BASE_URL` para otro puerto.
+Para verificar el proyecto, ejecuta `npm run lint` y `npm run build`.
 
 
 El botón de WeChat abre un modal con el QR, sin desplazar el contenido de la tarjeta, para escanearlo desde WeChat o guardar la imagen y seleccionarla desde su escáner. No redirige al navegador a `u.wechat.com`, porque ese destino no abrió el contacto en las pruebas del usuario. `qrImage` apunta a un PNG local. El QR de Ashley y su enlace se obtuvieron de la imagen proporcionada; el PNG de César Chiluisa se generó a partir de su enlace previamente registrado. Los cinco PNG se verificaron decodificándolos y comparándolos con su `href`.

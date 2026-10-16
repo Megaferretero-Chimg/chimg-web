@@ -7,8 +7,8 @@ import { usePathname } from "next/navigation";
 import { ArrowUpRight, MapPin, Menu, Phone, X } from "lucide-react";
 import { company } from "@/lib/site";
 import styles from "./site-header.module.scss";
-import ambatoMenu from "@/output/banners/chimg-mobile-v1.png";
-import salcedoMenu from "@/output/banners/chimg-salcedo-mobile-v1.png";
+import ambatoMenu from "@/public/banners/chimg-mobile-v1.png";
+import salcedoMenu from "@/public/banners/chimg-salcedo-mobile-v1.png";
 
 export default function SiteHeader() {
   const { t } = useLanguage();

@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Check, Copy, Download, Globe, Mail, MapPin, MessageCircle, Phone, QrCode, Share2, UserRound, UserRoundPlus, X } from "lucide-react";
 import { getCardInitials, getCardLinks } from "@/lib/presentation-cards";
-import ambato from "@/output/banners/chimg-widescreen-v1.png";
+import ambato from "@/public/banners/chimg-widescreen-v1.png";
 import styles from "./presentation-card.module.scss";
 
 const icons = { contact: UserRoundPlus, phone: Phone, email: Mail, whatsapp: WhatsAppIcon, wechat: MessageCircle, website: Globe, location: MapPin };
